@@ -21,7 +21,11 @@
   <div class="custom-mc__inner">
 
     {%- comment -%}Section header{%- endcomment -%}
-    {%- assign show_header_cta = section.settings.header_cta_label != blank -%}
+    {%- if section.settings.header_cta_label != blank -%}
+      {%- assign show_header_cta = true -%}
+    {%- else -%}
+      {%- assign show_header_cta = false -%}
+    {%- endif -%}
     {%- if section.settings.eyebrow_text != blank or section.settings.heading != blank -%}
       <div class="custom-mc__header{% if show_header_cta %} custom-mc__header--space-between{% elsif header_align == 'center' %} custom-mc__header--center{% else %} custom-mc__header--left{% endif %}">
         <div class="custom-mc__header-left">
