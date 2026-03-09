@@ -1,0 +1,157 @@
+{{ 'section-custom-ugc-video-grid.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #shopify-section-{{ section.id }} .custom-ugc-section {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+</style>
+
+<section
+  class="custom-ugc-section color-{{ section.settings.color_scheme }}"
+  data-section-id="{{ section.id }}"
+>
+  <div class="custom-ugc__inner">
+
+    {%- comment -%}Section header{%- endcomment -%}
+    {%- if section.settings.eyebrow != blank or section.settings.heading != blank -%}
+      <div class="custom-ugc__header">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="custom-ugc__eyebrow">{{ section.settings.eyebrow | escape }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="custom-ugc__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+
+  {%- comment -%}Horizontally scrollable video tiles{%- endcomment -%}
+  <div class="custom-ugc__ticker">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'video_tile' -%}
+        {%- assign tile_url = block.settings.tile_link | default: '#' -%}
+        <a href="{{ tile_url }}" class="custom-ugc__tile" {{ block.shopify_attributes }}>
+          <div class="custom-ugc__tile-video-wrap">
+            {%- if block.settings.video_url != blank -%}
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
+                width="100%"
+                style="object-fit:cover;width:100%;height:100%;"
+              >
+                <source src="{{ block.settings.video_url }}" type="video/mp4">
+              </video>
+            {%- else -%}
+              <div style="width:100%;height:100%;background:var(--color-foreground);opacity:0.1;"></div>
+            {%- endif -%}
+          </div>
+          {%- if block.settings.product_name != blank -%}
+            <div class="custom-ugc__tile-info">
+              <p class="custom-ugc__tile-name">{{ block.settings.product_name | escape }}</p>
+              {%- if block.settings.product_price != blank -%}
+                <p class="custom-ugc__tile-price">{{ block.settings.product_price | escape }}</p>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "UGC Video Grid",
+  "tag": "section",
+  "class": "custom-ugc-section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "In Use"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Used in the Wild. Trusted in the Field."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video_tile",
+      "name": "Video Tile",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "video_url",
+          "label": "Video URL (mp4)"
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Product name",
+          "default": "Base Kit Bundle | Insulated Water Bottle Included"
+        },
+        {
+          "type": "text",
+          "id": "product_price",
+          "label": "Price",
+          "default": "$69.99"
+        },
+        {
+          "type": "url",
+          "id": "tile_link",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "UGC Video Grid",
+      "category": "HydroLid",
+      "blocks": {
+        "tile_1": { "type": "video_tile", "settings": { "product_name": "Base Kit Bundle | Insulated Water Bottle Included", "product_price": "$69.99" } },
+        "tile_2": { "type": "video_tile", "settings": { "product_name": "Base Kit Bundle | Insulated Water Bottle Included", "product_price": "$69.99" } },
+        "tile_3": { "type": "video_tile", "settings": { "product_name": "Base Kit Bundle | Insulated Water Bottle Included", "product_price": "$69.99" } },
+        "tile_4": { "type": "video_tile", "settings": { "product_name": "Field & Fire Kit Bundle", "product_price": "$149.99" } }
+      },
+      "block_order": ["tile_1", "tile_2", "tile_3", "tile_4"]
+    }
+  ]
+}
+{% endschema %}

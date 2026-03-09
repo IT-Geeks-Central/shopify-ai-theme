@@ -1,0 +1,296 @@
+/* ============================================================
+   HydroLid — Custom Multicolumn
+   Section: custom-multicolumn.liquid
+   Used for: Pain Points, Three Steps, Trust Badges
+   ============================================================ */
+
+.custom-mc-section {
+  overflow: hidden;
+}
+
+.custom-mc__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+/* Section header */
+.custom-mc__header {
+  margin-bottom: 30px;
+}
+
+.custom-mc__header--center {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.custom-mc__header--left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.custom-mc__header--space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.custom-mc__header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Eyebrow */
+.custom-mc__eyebrow {
+  font-family: 'Great Sejagad Regular', 'Great Sejagad Regular Placeholder', sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-foreground-heading);
+  display: block;
+}
+
+/* Section heading */
+.custom-mc__heading {
+  font-family: var(--font-heading--family);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+  text-transform: capitalize;
+  color: var(--color-foreground-heading);
+  margin: 0;
+}
+
+/* View All / header CTA */
+.custom-mc__header-cta {
+  display: inline-block;
+  padding: 13px 28px;
+  font-family: var(--font-body--family);
+  font-size: 14px;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: var(--color-primary-button-background);
+  color: var(--color-primary-button-text);
+  border: none;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.custom-mc__header-cta:hover { opacity: 0.85; }
+
+/* Columns grid */
+.custom-mc__columns {
+  display: grid;
+  gap: 16px;
+}
+
+.custom-mc__columns--3 { grid-template-columns: repeat(3, 1fr); }
+.custom-mc__columns--4 { grid-template-columns: repeat(4, 1fr); }
+
+/* With dividers between columns */
+.custom-mc__columns--dividers .custom-mc__column + .custom-mc__column {
+  border-left: 1px solid var(--color-border);
+}
+
+/* Individual column */
+.custom-mc__column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 28px 20px;
+  gap: 12px;
+  background: var(--color-background);
+}
+
+.custom-mc__column--no-bg {
+  background: transparent;
+}
+
+/* Column icon */
+.custom-mc__col-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+/* Step number circle */
+.custom-mc__step-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.custom-mc__step-icon--1 { background-color: var(--color-primary); }
+.custom-mc__step-icon--2 { background-color: #2e6f4e; }
+.custom-mc__step-icon--3 { background-color: #1f3d2b; }
+.custom-mc__step-icon--4 { background-color: var(--color-primary); }
+
+/* Column heading (H4) */
+.custom-mc__col-heading {
+  font-family: var(--font-heading--family);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.7px;
+  text-transform: capitalize;
+  color: var(--color-foreground-heading);
+  margin: 0;
+}
+
+/* Column body */
+.custom-mc__col-body {
+  font-family: var(--font-body--family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-foreground-muted, var(--color-foreground));
+  margin: 0;
+}
+
+/* Divider line between columns (pain-points style) */
+.custom-mc__divider {
+  width: 1px;
+  background: var(--color-border);
+  align-self: center;
+  height: 83px;
+  flex-shrink: 0;
+}
+
+/* Pain-points layout: flex with dividers */
+.custom-mc__columns--pain {
+  display: flex;
+  background: var(--color-background);
+}
+
+.custom-mc__columns--pain .custom-mc__column {
+  flex: 1;
+}
+
+/* Bottom CTA bar (trust badges section) */
+.custom-mc__footer-cta {
+  margin-top: 16px;
+  background: var(--color-background);
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+.custom-mc__footer-cta-text {}
+
+.custom-mc__footer-cta-heading {
+  font-family: var(--font-heading--family);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+  text-transform: capitalize;
+  color: var(--color-foreground-heading);
+  margin: 0 0 8px;
+}
+
+.custom-mc__footer-cta-body {
+  font-family: var(--font-body--family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-foreground-muted, var(--color-foreground));
+  margin: 0;
+}
+
+.custom-mc__footer-cta-btn {
+  display: inline-block;
+  padding: 13px 28px;
+  font-family: var(--font-body--family);
+  font-size: 14px;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: var(--color-primary-button-background);
+  color: var(--color-primary-button-text);
+  border: none;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.custom-mc__footer-cta-btn:hover { opacity: 0.85; }
+
+/* Tablet */
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .custom-mc__columns--3,
+  .custom-mc__columns--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .custom-mc__columns--pain {
+    flex-wrap: wrap;
+  }
+
+  .custom-mc__heading { font-size: 28px; }
+  .custom-mc__eyebrow { font-size: 22px; }
+}
+
+/* Mobile */
+@media screen and (max-width: 749px) {
+  .custom-mc__inner {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .custom-mc__columns--3,
+  .custom-mc__columns--4 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .custom-mc__columns--pain {
+    flex-direction: column;
+  }
+
+  .custom-mc__divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .custom-mc__heading { font-size: 24px; }
+  .custom-mc__eyebrow { font-size: 20px; }
+
+  .custom-mc__header--space-between {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .custom-mc__footer-cta {
+    flex-direction: column;
+    text-align: center;
+  }
+}

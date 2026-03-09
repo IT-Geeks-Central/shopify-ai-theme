@@ -1,0 +1,115 @@
+/* ============================================================
+   HydroLid — Newsletter Section
+   Section: custom-newsletter.liquid
+   ============================================================ */
+
+.custom-nl-section {
+  overflow: hidden;
+  text-align: center;
+}
+
+.custom-nl__inner {
+  max-width: 700px;
+  margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.custom-nl__heading {
+  font-family: var(--font-heading--family);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+  text-transform: capitalize;
+  color: var(--color-foreground-heading);
+  margin: 0;
+}
+
+.custom-nl__body {
+  font-family: var(--font-body--family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-foreground-muted, var(--color-foreground));
+  margin: 0;
+}
+
+/* Email form */
+.custom-nl__form {
+  display: flex;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.custom-nl__input {
+  flex: 1;
+  padding: 13px 20px;
+  border: 1px solid var(--color-border);
+  border-right: none;
+  font-family: var(--font-body--family);
+  font-size: 16px;
+  font-weight: 400;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.custom-nl__input:focus {
+  border-color: var(--color-primary);
+}
+
+.custom-nl__input::placeholder {
+  color: var(--color-foreground-muted, var(--color-foreground));
+  opacity: 0.5;
+}
+
+.custom-nl__submit {
+  display: inline-block;
+  padding: 13px 28px;
+  font-family: var(--font-body--family);
+  font-size: 14px;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  cursor: pointer;
+  background-color: var(--color-primary-button-background);
+  color: var(--color-primary-button-text);
+  border: none;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.custom-nl__submit:hover { opacity: 0.85; }
+
+/* Mobile */
+@media screen and (max-width: 749px) {
+  .custom-nl__inner {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .custom-nl__heading { font-size: 24px; }
+
+  .custom-nl__form {
+    flex-direction: column;
+  }
+
+  .custom-nl__input {
+    border-right: 1px solid var(--color-border);
+    border-bottom: none;
+  }
+
+  .custom-nl__submit {
+    width: 100%;
+  }
+}

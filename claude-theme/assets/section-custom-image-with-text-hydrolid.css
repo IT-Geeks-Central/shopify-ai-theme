@@ -1,0 +1,265 @@
+/* ============================================================
+   HydroLid — Custom Image With Text (The System / Video+Text)
+   Section: custom-image-with-text.liquid
+   ============================================================ */
+
+.custom-iwt-section {
+  overflow: hidden;
+  position: relative;
+}
+
+/* Optional full-section background image */
+.custom-iwt__section-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.custom-iwt__section-bg img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.custom-iwt__section-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* Inner wrapper */
+.custom-iwt__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 50px;
+}
+
+/* Two-column layout */
+.custom-iwt__layout {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+/* Layout modifiers */
+.custom-iwt__layout--image-left .custom-iwt__media { order: 0; }
+.custom-iwt__layout--image-left .custom-iwt__content { order: 1; }
+.custom-iwt__layout--image-right .custom-iwt__media { order: 1; }
+.custom-iwt__layout--image-right .custom-iwt__content { order: 0; }
+
+/* Media column (image or video) */
+.custom-iwt__media {
+  width: 41%;
+  flex-shrink: 0;
+}
+
+.custom-iwt__media-img-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.custom-iwt__media-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.custom-iwt__media-video-wrap {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+}
+
+.custom-iwt__media-video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Content column */
+.custom-iwt__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Eyebrow */
+.custom-iwt__eyebrow {
+  font-family: 'Great Sejagad Regular', 'Great Sejagad Regular Placeholder', sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-foreground-heading);
+  display: block;
+}
+
+/* Heading */
+.custom-iwt__heading {
+  font-family: var(--font-heading--family);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+  text-transform: capitalize;
+  color: var(--color-foreground-heading);
+  margin: 0;
+}
+
+/* Quote / subheading */
+.custom-iwt__quote {
+  border-left: 2px solid var(--color-primary);
+  padding-left: 12px;
+}
+
+.custom-iwt__subheading {
+  font-family: var(--font-heading--family);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+  color: var(--color-foreground-heading);
+  margin: 0;
+}
+
+/* Body text */
+.custom-iwt__body {
+  font-family: var(--font-body--family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-foreground);
+}
+
+/* Features grid (2×N) */
+.custom-iwt__features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 24px;
+}
+
+.custom-iwt__feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.custom-iwt__feature-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-iwt__feature-text {
+  font-family: var(--font-body--family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-foreground);
+}
+
+/* CTA buttons */
+.custom-iwt__ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.custom-iwt__btn {
+  display: inline-block;
+  padding: 13px 28px;
+  font-family: var(--font-body--family);
+  font-size: 14px;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  border: none;
+}
+
+.custom-iwt__btn:hover { opacity: 0.85; }
+
+.custom-iwt__btn--primary {
+  background-color: var(--color-primary-button-background);
+  color: var(--color-primary-button-text);
+}
+
+.custom-iwt__btn--secondary {
+  background-color: var(--color-secondary-button-background);
+  color: var(--color-secondary-button-text);
+  border: 1px solid var(--color-secondary-button-border);
+}
+
+/* Tablet */
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .custom-iwt__layout {
+    flex-direction: column;
+  }
+
+  .custom-iwt__media {
+    width: 100%;
+    order: 0 !important;
+  }
+
+  .custom-iwt__content {
+    order: 1 !important;
+  }
+
+  .custom-iwt__media-img-wrap {
+    aspect-ratio: 16 / 9;
+  }
+
+  .custom-iwt__heading { font-size: 28px; }
+  .custom-iwt__eyebrow { font-size: 22px; }
+}
+
+/* Mobile */
+@media screen and (max-width: 749px) {
+  .custom-iwt__inner {
+    padding: 40px 20px;
+  }
+
+  .custom-iwt__layout {
+    flex-direction: column;
+  }
+
+  .custom-iwt__media {
+    width: 100%;
+    order: 0 !important;
+  }
+
+  .custom-iwt__content {
+    order: 1 !important;
+  }
+
+  .custom-iwt__media-img-wrap {
+    aspect-ratio: 1;
+  }
+
+  .custom-iwt__features {
+    grid-template-columns: 1fr;
+  }
+
+  .custom-iwt__heading { font-size: 24px; }
+  .custom-iwt__subheading { font-size: 18px; }
+  .custom-iwt__eyebrow { font-size: 20px; }
+}

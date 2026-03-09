@@ -1,0 +1,187 @@
+{{ 'section-custom-faq-hydrolid.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #shopify-section-{{ section.id }} .custom-faq-section {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+</style>
+
+<section
+  class="custom-faq-section color-{{ section.settings.color_scheme }}"
+  data-section-id="{{ section.id }}"
+>
+  <div class="custom-faq__inner">
+    <div class="custom-faq__layout">
+
+      {%- comment -%}Sticky sidebar{%- endcomment -%}
+      <div class="custom-faq__sidebar">
+        {%- if section.settings.eyebrow_text != blank -%}
+          <span class="custom-faq__eyebrow">{{ section.settings.eyebrow_text | escape }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="custom-faq__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtext != blank -%}
+          <p class="custom-faq__sidebar-body">{{ section.settings.subtext }}</p>
+        {%- endif -%}
+        {%- if section.settings.contact_link_label != blank -%}
+          <a
+            href="{{ section.settings.contact_link_url | default: '/pages/contact' }}"
+            class="custom-faq__contact-btn"
+          >{{ section.settings.contact_link_label | escape }}</a>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%}Accordion list{%- endcomment -%}
+      <div class="custom-faq__list" id="faq-list-{{ section.id }}">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'item' -%}
+            <div
+              class="custom-faq__item"
+              {{ block.shopify_attributes }}
+            >
+              <button
+                class="custom-faq__question"
+                aria-expanded="false"
+                aria-controls="faq-answer-{{ section.id }}-{{ forloop.index }}"
+              >
+                {{ block.settings.question | escape }}
+                <span class="custom-faq__question-icon" aria-hidden="true">+</span>
+              </button>
+              <div
+                class="custom-faq__answer"
+                id="faq-answer-{{ section.id }}-{{ forloop.index }}"
+              >
+                <div class="custom-faq__answer-inner">{{ block.settings.answer }}</div>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var list = document.getElementById('faq-list-{{ section.id }}');
+  if (!list) return;
+  list.addEventListener('click', function(e) {
+    var btn = e.target.closest('.custom-faq__question');
+    if (!btn) return;
+    var item = btn.closest('.custom-faq__item');
+    var isOpen = item.classList.contains('custom-faq__item--open');
+    // Close all
+    list.querySelectorAll('.custom-faq__item--open').forEach(function(el) {
+      el.classList.remove('custom-faq__item--open');
+      el.querySelector('.custom-faq__question').setAttribute('aria-expanded', 'false');
+    });
+    // Open clicked if was closed
+    if (!isOpen) {
+      item.classList.add('custom-faq__item--open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "tag": "section",
+  "class": "custom-faq-section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow",
+      "default": "Common Questions"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Find Your Answers Fast"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Sidebar body text",
+      "default": "Everything you need to know about compatibility, durability, and field use."
+    },
+    {
+      "type": "text",
+      "id": "contact_link_label",
+      "label": "Contact link label",
+      "default": "Contact support"
+    },
+    {
+      "type": "url",
+      "id": "contact_link_url",
+      "label": "Contact link URL"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What is HydroLid, and what makes it unique?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "HydroLid offers innovative hydration solutions designed for extreme environments and outdoor recreation."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "category": "HydroLid",
+      "blocks": {
+        "faq_1": { "type": "item", "settings": { "question": "What is HydroLid, and what makes it unique?", "answer": "HydroLid offers innovative hydration solutions designed for extreme environments and outdoor recreation. Founded by a wildland firefighter, our products ensure temperature-stable hydration without the need to stop and access your insulated bottle." } },
+        "faq_2": { "type": "item", "settings": { "question": "Are HydroLid products compatible with other insulated bottles?", "answer": "Yes, HydroLid works with wide-mouth Hydro Flask, ThermoFlask and CamelBak insulated bottles, offering a versatile solution to fit various popular bottle brands." } },
+        "faq_3": { "type": "item", "settings": { "question": "How can HydroLid products be adapted to various hydration capacities and uses?", "answer": "HydroLid offers a range of kits that can be customized for different hydration needs, from the HydroLid Base Kit for everyday use to the HydroLid Field & Fire Kit for simultaneous drawing from two bottles." } },
+        "faq_4": { "type": "item", "settings": { "question": "How does HydroLid support hydration needs during firefighting operations?", "answer": "HydroLid provides firefighters with quick and hands-free hydration access, allowing them to stay focused on the task without having to stop to access their insulated bottles." } },
+        "faq_5": { "type": "item", "settings": { "question": "Is HydroLid compatible with the gear typically used by fire departments?", "answer": "Yes, HydroLid is designed with versatility in mind and can be used with wide-mouth bottles such as Hydro Flask, ThermoFlask and CamelBak insulated bottles." } }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5"]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,244 @@
+{{ 'section-custom-hero.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  #shopify-section-{{ section.id }} .custom-hero__overlay {
+    opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    background: #000000;
+  }
+</style>
+
+<section
+  class="custom-hero-section color-{{ section.settings.color_scheme }}"
+  data-section-id="{{ section.id }}"
+>
+
+  {%- comment -%}Background image — desktop or mobile depending on viewport{%- endcomment -%}
+  <div class="custom-hero__bg">
+    {%- if section.settings.desktop_image != blank -%}
+      {%- assign bg_alt = section.settings.desktop_image.alt | default: shop.name | escape -%}
+      {{
+        section.settings.desktop_image
+        | image_url: width: 2000
+        | image_tag:
+          loading: 'eager',
+          fetchpriority: 'high',
+          alt: bg_alt,
+          widths: '750, 1100, 1500, 2000',
+          sizes: '100vw',
+          class: 'custom-hero__bg-desktop'
+      }}
+    {%- else -%}
+      <div style="width:100%;height:100%;background:var(--color-background);"></div>
+    {%- endif -%}
+    {%- if section.settings.mobile_image != blank -%}
+      {%- assign mb_alt = section.settings.mobile_image.alt | default: shop.name | escape -%}
+      {{
+        section.settings.mobile_image
+        | image_url: width: 800
+        | image_tag:
+          loading: 'eager',
+          alt: mb_alt,
+          widths: '375, 550, 750',
+          sizes: '100vw',
+          class: 'custom-hero__bg-mobile'
+      }}
+    {%- endif -%}
+  </div>
+
+  {%- comment -%}Overlay — opacity controlled by setting{%- endcomment -%}
+  <div class="custom-hero__overlay" aria-hidden="true"></div>
+
+  {%- comment -%}Main text content (left side){%- endcomment -%}
+  <div class="custom-hero__content">
+
+    {%- if section.settings.eyebrow_text != blank -%}
+      <span class="custom-hero__eyebrow">{{ section.settings.eyebrow_text | escape }}</span>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank -%}
+      <h1 class="custom-hero__heading">{{ section.settings.heading }}</h1>
+    {%- endif -%}
+
+    {%- if section.settings.subheading != blank -%}
+      <p class="custom-hero__body">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.primary_cta_label != blank or section.settings.secondary_cta_label != blank -%}
+      <div class="custom-hero__buttons">
+        {%- if section.settings.secondary_cta_label != blank -%}
+          <a
+            href="{{ section.settings.secondary_cta_url | default: '#' }}"
+            class="custom-hero__btn custom-hero__btn--secondary"
+          >{{ section.settings.secondary_cta_label | escape }}</a>
+        {%- endif -%}
+        {%- if section.settings.primary_cta_label != blank -%}
+          <a
+            href="{{ section.settings.primary_cta_url | default: '#' }}"
+            class="custom-hero__btn custom-hero__btn--primary"
+          >{{ section.settings.primary_cta_label | escape }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+
+  {%- comment -%}Floating product card (desktop only){%- endcomment -%}
+  {%- if section.settings.show_product_card and section.settings.featured_product != blank -%}
+    {%- assign hero_product = section.settings.featured_product -%}
+    <div class="custom-hero__product-card">
+      {%- if hero_product.featured_image != blank -%}
+        {%- assign card_img_alt = hero_product.featured_image.alt | default: hero_product.title | escape -%}
+        <div class="custom-hero__product-card-img">
+          {{
+            hero_product.featured_image
+            | image_url: width: 600
+            | image_tag:
+              loading: 'lazy',
+              alt: card_img_alt,
+              widths: '300, 600',
+              sizes: '300px'
+          }}
+        </div>
+      {%- endif -%}
+      <p class="custom-hero__product-card-title">{{ hero_product.title }}</p>
+      <p class="custom-hero__product-card-price">{{ hero_product.price | money }}</p>
+    </div>
+  {%- endif -%}
+
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "tag": "div",
+  "class": "custom-hero-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile background image (optional)"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow text",
+      "default": "Mission Ready"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Ditch the Bladder. Upgrade Your Hydration."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Body text",
+      "default": "A smarter, lighter, cleaner hydration system built for hikers, backpackers, and wildland firefighters."
+    },
+    {
+      "type": "header",
+      "content": "CTA Buttons"
+    },
+    {
+      "type": "text",
+      "id": "primary_cta_label",
+      "label": "Primary button label",
+      "default": "See How It Works"
+    },
+    {
+      "type": "url",
+      "id": "primary_cta_url",
+      "label": "Primary button URL"
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta_label",
+      "label": "Secondary button label",
+      "default": "Upgrade Your Setup"
+    },
+    {
+      "type": "url",
+      "id": "secondary_cta_url",
+      "label": "Secondary button URL"
+    },
+    {
+      "type": "header",
+      "content": "Featured Product Card"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_card",
+      "label": "Show product card",
+      "default": true
+    },
+    {
+      "type": "product",
+      "id": "featured_product",
+      "label": "Featured product"
+    },
+    {
+      "type": "header",
+      "content": "Color & Spacing"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-6"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner",
+      "category": "HydroLid"
+    }
+  ]
+}
+{% endschema %}

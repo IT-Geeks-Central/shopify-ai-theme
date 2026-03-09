@@ -1,0 +1,60 @@
+/* ============================================================
+   HydroLid — Custom Announcement Ticker
+   Section: header-announcements.liquid
+   ============================================================ */
+
+/* Hide the default Horizon slideshow when custom ticker is active */
+.announcement-bar--has-ticker announcement-bar-component {
+  display: none;
+}
+
+/* Ticker container */
+.hydrolid-ticker {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Scrolling track — rendered with 6 sets of messages so any viewport is covered */
+.hydrolid-ticker__track {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  gap: 0;
+  /* Animate exactly 1/6 of the total track width (6 copies rendered) */
+  animation: hydrolid-ticker-scroll var(--ticker-speed, 30s) linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hydrolid-ticker__track {
+    animation: none;
+  }
+}
+
+@keyframes hydrolid-ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-16.6667%); }
+}
+
+/* Individual message item */
+.hydrolid-ticker__item {
+  display: inline-block;
+  padding: 0 2rem;
+  font-family: var(--font-body--family);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--color-foreground);
+  white-space: nowrap;
+}
+
+/* Separator between messages */
+.hydrolid-ticker__sep {
+  display: inline-block;
+  flex-shrink: 0;
+  color: var(--color-primary);
+  font-size: 0.625rem;
+  line-height: 1;
+}

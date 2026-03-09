@@ -1,0 +1,130 @@
+/* ============================================================
+   HydroLid — UGC Video Grid (In Use)
+   Section: custom-ugc-video-grid.liquid
+   ============================================================ */
+
+.custom-ugc-section {
+  overflow: hidden;
+}
+
+.custom-ugc__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+/* Section header */
+.custom-ugc__header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 30px;
+}
+
+.custom-ugc__eyebrow {
+  font-family: 'Great Sejagad Regular', 'Great Sejagad Regular Placeholder', sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-foreground-heading);
+  display: block;
+}
+
+.custom-ugc__heading {
+  font-family: var(--font-heading--family);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+  text-transform: capitalize;
+  color: var(--color-foreground-heading);
+  margin: 0;
+}
+
+/* Horizontal scrollable ticker for UGC */
+.custom-ugc__ticker {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 0 20px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.custom-ugc__ticker::-webkit-scrollbar {
+  display: none;
+}
+
+/* Video tile */
+.custom-ugc__tile {
+  width: 300px;
+  flex-shrink: 0;
+  background: var(--color-background);
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+  display: block;
+}
+
+.custom-ugc__tile-video-wrap {
+  width: 100%;
+  aspect-ratio: 0.75;
+  overflow: hidden;
+  position: relative;
+}
+
+.custom-ugc__tile-video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Product info below video */
+.custom-ugc__tile-info {
+  padding: 15px;
+}
+
+.custom-ugc__tile-name {
+  font-family: var(--font-body--family);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  text-transform: capitalize;
+  color: var(--color-foreground-heading);
+  margin: 0 0 4px;
+}
+
+.custom-ugc__tile-price {
+  font-family: var(--font-heading--family);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-foreground);
+  margin: 0;
+}
+
+/* Mobile */
+@media screen and (max-width: 749px) {
+  .custom-ugc__inner {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .custom-ugc__header {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .custom-ugc__tile {
+    width: 240px;
+  }
+
+  .custom-ugc__heading { font-size: 24px; }
+  .custom-ugc__eyebrow { font-size: 20px; }
+}

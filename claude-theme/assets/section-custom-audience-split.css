@@ -1,0 +1,132 @@
+/* ============================================================
+   HydroLid — Audience Split Banners
+   Section: custom-audience-split.liquid
+   ============================================================ */
+
+.custom-as-section {
+  overflow: hidden;
+}
+
+/* Two-panel grid */
+.custom-as__wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: var(--as-height, 600px);
+}
+
+/* Each panel */
+.custom-as__panel {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* Background image */
+.custom-as__panel-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.custom-as__panel-bg img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Dark overlay */
+.custom-as__panel-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.2) 60%,
+    transparent 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Content */
+.custom-as__panel-content {
+  position: relative;
+  z-index: 2;
+  padding: 40px 60px;
+  color: #ffffff;
+  max-width: 70%;
+}
+
+/* Panel heading */
+.custom-as__panel-heading {
+  font-family: var(--font-heading--family);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+  text-transform: capitalize;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+/* Panel subtext */
+.custom-as__panel-body {
+  font-family: var(--font-body--family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 20px;
+}
+
+/* CTA button */
+.custom-as__panel-btn {
+  display: inline-block;
+  padding: 13px 28px;
+  font-family: var(--font-body--family);
+  font-size: 14px;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  cursor: pointer;
+  text-decoration: none;
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid #ffffff;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.custom-as__panel-btn:hover { opacity: 0.85; }
+
+/* Tablet */
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .custom-as__panel-heading { font-size: 28px; }
+  .custom-as__panel-content { padding: 30px 30px; }
+}
+
+/* Mobile — stack vertically */
+@media screen and (max-width: 749px) {
+  .custom-as__wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .custom-as__panel {
+    min-height: 400px;
+  }
+
+  .custom-as__panel-content {
+    padding: 30px 20px;
+    max-width: 100%;
+  }
+
+  .custom-as__panel-heading { font-size: 24px; }
+}

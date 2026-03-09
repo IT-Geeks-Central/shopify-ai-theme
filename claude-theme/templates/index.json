@@ -1,99 +1,26 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */{
+{
   "sections": {
-    "hero_jVaWmY": {
-      "type": "hero",
-      "blocks": {
-        "text_YLPk4p": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<p>Browse our latest products</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground-heading)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "button_H9gpTf": {
-          "type": "button",
-          "name": "t:names.button",
-          "settings": {
-            "label": "Shop all",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button-secondary",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
-      ],
-      "name": "t:names.hero",
+    "custom_hero_hydrolid": {
+      "type": "custom-hero",
       "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
+        "eyebrow_text": "Mission Ready",
+        "heading": "Ditch the Bladder. Upgrade Your Hydration.",
+        "subheading": "A smarter, lighter, cleaner hydration system built for hikers, backpackers, and wildland firefighters.",
+        "primary_cta_label": "See How It Works",
+        "secondary_cta_label": "Upgrade Your Setup",
+        "show_product_card": true,
+        "overlay_opacity": 40,
         "color_scheme": "scheme-6",
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
-        "overlay_style": "solid",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
-    "product_list_fa6P9H": {
+    "new_arrivals_hydrolid": {
       "type": "product-list",
       "blocks": {
         "static-header": {
           "type": "_product-list-content",
-          "name": "t:names.header",
+          "name": "Header",
           "static": true,
           "settings": {
             "content_direction": "row",
@@ -125,15 +52,15 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "product_list_text_YFtzcL": {
+            "new_arrivals_text": {
               "type": "_product-list-text",
-              "name": "t:names.collection_title",
+              "name": "New Arrivals title",
               "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
+                "text": "<p style=\"font-family:'Great Sejagad Regular',sans-serif;font-size:26px;font-weight:400;margin:0 0 4px;\">New Arrivals</p><h2 style=\"margin:0;\">Built for the Field.</h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "h4",
+                "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "",
                 "line_height": "normal",
@@ -151,13 +78,13 @@
               },
               "blocks": {}
             },
-            "product_list_button_MWeP9V": {
+            "new_arrivals_btn": {
               "type": "_product-list-button",
-              "name": "t:names.product_list_button",
+              "name": "View all",
               "settings": {
-                "label": "View all",
+                "label": "View All",
                 "open_in_new_tab": false,
-                "style_class": "link",
+                "style_class": "button-primary",
                 "width": "fit-content",
                 "custom_width": 100,
                 "width_mobile": "fit-content",
@@ -166,14 +93,11 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "product_list_text_YFtzcL",
-            "product_list_button_MWeP9V"
-          ]
+          "block_order": ["new_arrivals_text", "new_arrivals_btn"]
         },
         "static-product-card": {
           "type": "_product-card",
-          "name": "t:names.product_card",
+          "name": "Product card",
           "static": true,
           "settings": {
             "product_card_gap": 4,
@@ -189,11 +113,11 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "product_card_gallery_677WP3": {
+            "pc_gallery": {
               "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
+              "name": "Media",
               "settings": {
-                "image_ratio": "adapt",
+                "image_ratio": "square",
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
@@ -205,13 +129,13 @@
               },
               "blocks": {}
             },
-            "product_title_YXxMTj": {
+            "pc_title": {
               "type": "product-title",
-              "name": "t:names.product_title",
+              "name": "Product title",
               "settings": {
                 "width": "100%",
                 "max_width": "normal",
-                "alignment": "left",
+                "alignment": "center",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -230,16 +154,16 @@
               },
               "blocks": {}
             },
-            "price_JQzVV4": {
+            "pc_price": {
               "type": "price",
-              "name": "t:names.product_price",
+              "name": "Price",
               "settings": {
                 "show_sale_price_first": true,
                 "show_installments": false,
                 "show_tax_info": false,
                 "type_preset": "h6",
                 "width": "100%",
-                "alignment": "left",
+                "alignment": "center",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
@@ -254,19 +178,16 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "product_card_gallery_677WP3",
-            "product_title_YXxMTj",
-            "price_JQzVV4"
-          ]
+          "block_order": ["pc_gallery", "pc_title", "pc_price"]
         }
       },
-      "name": "Featured collection",
+      "block_order": ["static-header", "static-product-card"],
+      "name": "New Arrivals",
       "settings": {
         "collection": "all",
         "layout_type": "grid",
         "carousel_on_mobile": false,
-        "max_products": 8,
+        "max_products": 4,
         "columns": 4,
         "mobile_columns": "2",
         "mobile_card_size": "60cqw",
@@ -278,13 +199,414 @@
         "horizontal_alignment": "flex-start",
         "gap": 28,
         "color_scheme": "scheme-1",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "padding-block-start": 60,
+        "padding-block-end": 80
+      }
+    },
+    "the_system_hydrolid": {
+      "type": "custom-image-with-text",
+      "blocks": {
+        "feat_1": { "type": "feature", "settings": { "text": "Modular hose system" } },
+        "feat_2": { "type": "feature", "settings": { "text": "Quick-access drinking without removing your pack" } },
+        "feat_3": { "type": "feature", "settings": { "text": "Compatible with insulated bottles" } },
+        "feat_4": { "type": "feature", "settings": { "text": "Built for rugged use" } }
+      },
+      "block_order": ["feat_1", "feat_2", "feat_3", "feat_4"],
+      "settings": {
+        "eyebrow_text": "The System",
+        "heading": "Not a Lid. A Complete Upgrade System.",
+        "media_type": "image",
+        "media_position": "left",
+        "content_heading": "HydroLid transforms your bottle into a hands-free hydration system.",
+        "primary_cta_label": "See the System",
+        "color_scheme": "scheme-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "pain_points_hydrolid": {
+      "type": "custom-multicolumn",
+      "blocks": {
+        "pain_1": { "type": "column", "settings": { "heading": "Hard to clean", "body": "Standard bladders sit against your body, turning water into tea in minutes." } },
+        "pain_2": { "type": "column", "settings": { "heading": "Heavy when full", "body": "Fumbling with zippers and bags slows you down when seconds matter." } },
+        "pain_3": { "type": "column", "settings": { "heading": "Slows access", "body": "Poor hydration leads to fatigue. Hydrolid keeps you at peak operational capacity." } }
+      },
+      "block_order": ["pain_1", "pain_2", "pain_3"],
+      "settings": {
+        "eyebrow_text": "And in extreme heat? They warm up fast.",
+        "heading": "Hydration Bladders Add Bulk. Add Hassle. Add Complexity.",
+        "header_alignment": "center",
+        "layout_style": "pain-points",
+        "color_scheme": "scheme-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "audience_split_hydrolid": {
+      "type": "custom-audience-split",
+      "settings": {
+        "left_heading": "For Wildland Firefighters",
+        "left_subtext": "Operational hydration that won't fail when the heat hits triple digits. Built for the fire line.",
+        "left_cta_label": "Shop now",
+        "right_heading": "For Hikers & Backpackers",
+        "right_subtext": "Ditch the heavy bladder. Upgrade your trail experience with ice-cold water access.",
+        "right_cta_label": "Shop now",
+        "section_height": 600,
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "testimonials_hydrolid": {
+      "type": "custom-testimonials",
+      "blocks": {
+        "rev_1": { "type": "review", "settings": { "quote": "\"We've had issues with bladders popping in high heat. Hydrolid changed that. My Nalgene is now my hydration pack, and it doesn't fail.\"", "reviewer_name": "Sgt. Mark Harrison", "reviewer_role": "US Marine Corps" } },
+        "rev_2": { "type": "review", "settings": { "quote": "\"The Hydrolid is standard gear for me now. It's built for the same conditions we are—tough, reliable, and it actually keeps water cool.\"", "reviewer_name": "Sarah Miller", "reviewer_role": "Wildland Firefighter" } },
+        "rev_3": { "type": "review", "settings": { "quote": "\"It's the only hydration system that doesn't feel like a cheap plastic toy. The military-grade construction is evident from the first use.\"", "reviewer_name": "David Vance", "reviewer_role": "Professional Climber" } }
+      },
+      "block_order": ["rev_1", "rev_2", "rev_3"],
+      "settings": {
+        "eyebrow_text": "The System",
+        "heading": "Tested Where Failure Isn't an Option.",
+        "rating_badge": "4.9/5 Rating",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 80
+      }
+    },
+    "origin_timeline_hydrolid": {
+      "type": "custom-origin-timeline",
+      "blocks": {
+        "step_1": { "type": "step", "settings": { "step_label": "The Spark", "step_title": "100° Wildfire Conditions", "step_description": "California front lines, fighting heat exhaustion." } },
+        "step_2": { "type": "step", "settings": { "step_label": "The Failure", "step_title": "Bladder Water Overheats", "step_description": "Drinking warm plastic water when ice-cold is needed." } },
+        "step_3": { "type": "step", "settings": { "step_label": "The Solution", "step_title": "Insulated Bottle Workaround", "step_description": "Combining trusted thermal bottles with hydration tubes." } },
+        "step_4": { "type": "step", "settings": { "step_label": "The Build", "step_title": "Field Tested Prototype", "step_description": "Built by hand, tested in operational environments." } },
+        "step_5": { "type": "step", "settings": { "step_label": "The Result", "step_title": "Patent Secured", "step_description": "The ultimate hydration system upgrade is born." } }
+      },
+      "block_order": ["step_1", "step_2", "step_3", "step_4", "step_5"],
+      "settings": {
+        "eyebrow": "Our Origin",
+        "heading": "Born in Fire. Patented for Performance.",
+        "color_scheme": "scheme-5",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "the_gear_hydrolid": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "Header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "gear_text": {
+              "type": "_product-list-text",
+              "name": "The Gear title",
+              "settings": {
+                "text": "<p style=\"font-family:'Great Sejagad Regular',sans-serif;font-size:26px;font-weight:400;margin:0 0 4px;\">The Gear</p><h2 style=\"margin:0;\">Build Your Hydration Setup</h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "gear_btn": {
+              "type": "_product-list-button",
+              "name": "View all",
+              "settings": {
+                "label": "View All",
+                "open_in_new_tab": false,
+                "style_class": "button-primary",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": ["gear_text", "gear_btn"]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "Product card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "gear_pc_gallery": {
+              "type": "_product-card-gallery",
+              "name": "Media",
+              "settings": {
+                "image_ratio": "square",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "gear_pc_title": {
+              "type": "product-title",
+              "name": "Product title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "gear_pc_price": {
+              "type": "price",
+              "name": "Price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "center",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": ["gear_pc_gallery", "gear_pc_title", "gear_pc_price"]
+        }
+      },
+      "block_order": ["static-header", "static-product-card"],
+      "name": "The Gear",
+      "settings": {
+        "collection": "all",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "max_products": 4,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 8,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 28,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    },
+    "three_steps_hydrolid": {
+      "type": "custom-multicolumn",
+      "blocks": {
+        "step_a": { "type": "column", "settings": { "heading": "Attach", "body": "Install HydroLid onto your compatible bottle." } },
+        "step_b": { "type": "column", "settings": { "heading": "Route", "body": "Run the hose through your pack strap." } },
+        "step_c": { "type": "column", "settings": { "heading": "Go", "body": "Hydrate without stopping. Without unpacking." } }
+      },
+      "block_order": ["step_a", "step_b", "step_c"],
+      "settings": {
+        "eyebrow_text": "The Setup",
+        "heading": "Three Steps To Smarter Hydration.",
+        "header_alignment": "left",
+        "layout_style": "steps",
+        "color_scheme": "scheme-1",
+        "padding_top": 80,
+        "padding_bottom": 0
+      }
+    },
+    "video_cta_hydrolid": {
+      "type": "custom-image-with-text",
+      "settings": {
+        "eyebrow_text": "Effortless Hydration",
+        "heading": "Install in seconds",
+        "media_type": "video",
+        "media_position": "right",
+        "content_body": "Convert your insulated water bottle into a hands-free hydration system. Simply connect a drinking tube to a wide mouth water bottle. HydroLid works with insulated bottles from CamelBak, ThermoFlask and more to enjoy ice cold water on the go.",
+        "primary_cta_label": "Shop Kit",
+        "color_scheme": "scheme-5",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "faq_hydrolid": {
+      "type": "custom-faq",
+      "blocks": {
+        "faq_1": { "type": "item", "settings": { "question": "What is HydroLid, and what makes it unique?", "answer": "HydroLid offers innovative hydration solutions designed for extreme environments and outdoor recreation. Founded by a wildland firefighter, our products ensure temperature-stable hydration without the need to stop and access your insulated bottle." } },
+        "faq_2": { "type": "item", "settings": { "question": "Are HydroLid products compatible with other insulated bottles?", "answer": "Yes, HydroLid works with wide-mouth Hydro Flask, ThermoFlask and CamelBak insulated bottles, offering a versatile solution to fit various popular bottle brands." } },
+        "faq_3": { "type": "item", "settings": { "question": "How can HydroLid products be adapted to various hydration capacities and uses?", "answer": "HydroLid offers a range of kits that can be customized for different hydration needs, from the HydroLid Base Kit for everyday use to the HydroLid Field & Fire Kit for simultaneous drawing from two bottles." } },
+        "faq_4": { "type": "item", "settings": { "question": "How does HydroLid support hydration needs during firefighting operations?", "answer": "HydroLid provides firefighters with quick and hands-free hydration access, allowing them to stay focused on the task without having to stop to access their insulated bottles." } },
+        "faq_5": { "type": "item", "settings": { "question": "Is HydroLid compatible with the gear typically used by fire departments?", "answer": "Yes, HydroLid is designed with versatility in mind and can be used with wide-mouth bottles such as Hydro Flask, ThermoFlask and CamelBak insulated bottles." } }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5"],
+      "settings": {
+        "eyebrow_text": "Common Questions",
+        "heading": "Find Your Answers Fast",
+        "subtext": "Everything you need to know about compatibility, durability, and field use.",
+        "contact_link_label": "Contact support",
+        "color_scheme": "scheme-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "blog_hydrolid": {
+      "type": "featured-blog-posts",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding-block-start": 80,
+        "padding-block-end": 10
+      }
+    },
+    "trust_badges_hydrolid": {
+      "type": "custom-multicolumn",
+      "blocks": {
+        "badge_1": { "type": "column", "settings": { "heading": "Free Shipping", "body": "On orders over $75." } },
+        "badge_2": { "type": "column", "settings": { "heading": "Field-Tested Quality", "body": "Proven in extreme conditions." } },
+        "badge_3": { "type": "column", "settings": { "heading": "Secure Checkout", "body": "Your information is safe." } },
+        "badge_4": { "type": "column", "settings": { "heading": "Customer Support", "body": "Here when you need us." } }
+      },
+      "block_order": ["badge_1", "badge_2", "badge_3", "badge_4"],
+      "settings": {
+        "eyebrow_text": "The Setup",
+        "heading": "Built to Perform. Backed by Us.",
+        "header_alignment": "center",
+        "layout_style": "grid-4",
+        "footer_cta_heading": "If Something Isn't Right, We'll Make it Right",
+        "footer_cta_body": "Hydrolid was built in wildfire conditions where failure isn't an option.",
+        "footer_cta_btn_label": "Upgrade Your Setup",
+        "color_scheme": "scheme-1",
+        "padding_top": 80,
+        "padding_bottom": 0
+      }
+    },
+    "ugc_videos_hydrolid": {
+      "type": "custom-ugc-video-grid",
+      "blocks": {
+        "tile_1": { "type": "video_tile", "settings": { "product_name": "Base Kit Bundle | Insulated Water Bottle Included", "product_price": "$69.99" } },
+        "tile_2": { "type": "video_tile", "settings": { "product_name": "Base Kit Bundle | Insulated Water Bottle Included", "product_price": "$69.99" } },
+        "tile_3": { "type": "video_tile", "settings": { "product_name": "Base Kit Bundle | Insulated Water Bottle Included", "product_price": "$69.99" } },
+        "tile_4": { "type": "video_tile", "settings": { "product_name": "Field & Fire Kit Bundle", "product_price": "$149.99" } }
+      },
+      "block_order": ["tile_1", "tile_2", "tile_3", "tile_4"],
+      "settings": {
+        "eyebrow": "In Use",
+        "heading": "Used in the Wild. Trusted in the Field.",
+        "color_scheme": "scheme-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "newsletter_hydrolid": {
+      "type": "custom-newsletter",
+      "settings": {
+        "heading": "Stop Settling For Warm Water.",
+        "body_text": "Upgrade your hydration system today.",
+        "input_placeholder": "Enter your email",
+        "button_label": "Subscribe",
+        "color_scheme": "scheme-1",
+        "padding_top": 100,
+        "padding_bottom": 80
       }
     }
   },
   "order": [
-    "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "custom_hero_hydrolid",
+    "new_arrivals_hydrolid",
+    "the_system_hydrolid",
+    "pain_points_hydrolid",
+    "audience_split_hydrolid",
+    "testimonials_hydrolid",
+    "origin_timeline_hydrolid",
+    "the_gear_hydrolid",
+    "three_steps_hydrolid",
+    "video_cta_hydrolid",
+    "faq_hydrolid",
+    "blog_hydrolid",
+    "trust_badges_hydrolid",
+    "ugc_videos_hydrolid",
+    "newsletter_hydrolid"
   ]
 }

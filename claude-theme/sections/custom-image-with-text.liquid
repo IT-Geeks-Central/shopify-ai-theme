@@ -1,0 +1,334 @@
+{{ 'section-custom-image-with-text-hydrolid.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #shopify-section-{{ section.id }} .custom-iwt-section {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+</style>
+
+{%- liquid
+  assign media_position = section.settings.media_position | default: 'left'
+-%}
+
+<div
+  class="custom-iwt-section color-{{ section.settings.color_scheme }}"
+  data-section-id="{{ section.id }}"
+>
+
+  {%- comment -%}Optional full-section background image{%- endcomment -%}
+  {%- if section.settings.background_image != blank -%}
+    <div class="custom-iwt__section-bg" aria-hidden="true">
+      {%- assign bg_alt = section.settings.background_image.alt | default: '' | escape -%}
+      {{
+        section.settings.background_image
+        | image_url: width: 2000
+        | image_tag:
+          loading: 'lazy',
+          alt: bg_alt,
+          widths: '750, 1100, 1500, 2000',
+          sizes: '100vw'
+      }}
+      <div class="custom-iwt__section-bg-overlay"></div>
+    </div>
+  {%- endif -%}
+
+  <div class="custom-iwt__inner">
+
+    {%- comment -%}Optional section header (above the two-column layout){%- endcomment -%}
+    {%- if section.settings.eyebrow_text != blank or section.settings.heading != blank -%}
+      <div style="margin-bottom:30px;">
+        {%- if section.settings.eyebrow_text != blank -%}
+          <span class="custom-iwt__eyebrow">{{ section.settings.eyebrow_text | escape }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="custom-iwt__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="custom-iwt__layout custom-iwt__layout--image-{{ media_position }}">
+
+      {%- comment -%}Media column — image or video{%- endcomment -%}
+      <div class="custom-iwt__media">
+        {%- if section.settings.media_type == 'video' and section.settings.video_url != blank -%}
+          <div class="custom-iwt__media-video-wrap">
+            {%- assign poster_url = '' -%}
+            {%- if section.settings.video_poster != blank -%}
+              {%- assign poster_url = section.settings.video_poster | image_url: width: 1000 -%}
+            {%- endif -%}
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              width="100%"
+              {% if poster_url != '' %}poster="{{ poster_url }}"{% endif %}
+              style="object-fit:cover;width:100%;height:100%;"
+            >
+              <source src="{{ section.settings.video_url }}" type="video/mp4">
+            </video>
+          </div>
+        {%- elsif section.settings.image != blank -%}
+          <div class="custom-iwt__media-img-wrap">
+            {%- assign img_alt = section.settings.image.alt | default: section.settings.heading | escape -%}
+            {{
+              section.settings.image
+              | image_url: width: 1000
+              | image_tag:
+                loading: 'lazy',
+                alt: img_alt,
+                widths: '400, 600, 800, 1000',
+                sizes: '(max-width: 749px) 100vw, 41vw'
+            }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%}Content column{%- endcomment -%}
+      <div class="custom-iwt__content">
+
+        {%- if section.settings.content_eyebrow != blank -%}
+          <span class="custom-iwt__eyebrow">{{ section.settings.content_eyebrow | escape }}</span>
+        {%- endif -%}
+
+        {%- if section.settings.content_heading != blank -%}
+          <div class="custom-iwt__quote">
+            <h3 class="custom-iwt__subheading">{{ section.settings.content_heading }}</h3>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.content_body != blank -%}
+          <p class="custom-iwt__body">{{ section.settings.content_body }}</p>
+        {%- endif -%}
+
+        {%- comment -%}Feature bullets from blocks{%- endcomment -%}
+        {%- if section.blocks.size > 0 -%}
+          <div class="custom-iwt__features">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'feature' -%}
+                <div class="custom-iwt__feature" {{ block.shopify_attributes }}>
+                  {%- if block.settings.icon_svg != blank -%}
+                    <div class="custom-iwt__feature-icon">{{ block.settings.icon_svg }}</div>
+                  {%- else -%}
+                    <div class="custom-iwt__feature-icon">
+                      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                    </div>
+                  {%- endif -%}
+                  <p class="custom-iwt__feature-text">{{ block.settings.text | escape }}</p>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.primary_cta_label != blank or section.settings.secondary_cta_label != blank -%}
+          <div class="custom-iwt__ctas">
+            {%- if section.settings.primary_cta_label != blank -%}
+              <a
+                href="{{ section.settings.primary_cta_url | default: '#' }}"
+                class="custom-iwt__btn custom-iwt__btn--primary"
+              >{{ section.settings.primary_cta_label | escape }}</a>
+            {%- endif -%}
+            {%- if section.settings.secondary_cta_label != blank -%}
+              <a
+                href="{{ section.settings.secondary_cta_url | default: '#' }}"
+                class="custom-iwt__btn custom-iwt__btn--secondary"
+              >{{ section.settings.secondary_cta_label | escape }}</a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image With Text",
+  "tag": "section",
+  "class": "custom-iwt-section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Full-section background image (optional)"
+    },
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Section eyebrow",
+      "default": "The System"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "Not a Lid. A Complete Upgrade System."
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media type",
+      "options": [
+        { "value": "image", "label": "Image" },
+        { "value": "video", "label": "Video" }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Video URL (mp4)"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_poster",
+      "label": "Video poster image"
+    },
+    {
+      "type": "select",
+      "id": "media_position",
+      "label": "Media position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "content_eyebrow",
+      "label": "Content eyebrow"
+    },
+    {
+      "type": "textarea",
+      "id": "content_heading",
+      "label": "Content subheading",
+      "default": "HydroLid transforms your bottle into a hands-free hydration system."
+    },
+    {
+      "type": "textarea",
+      "id": "content_body",
+      "label": "Body text"
+    },
+    {
+      "type": "text",
+      "id": "primary_cta_label",
+      "label": "Primary CTA label",
+      "default": "See the System"
+    },
+    {
+      "type": "url",
+      "id": "primary_cta_url",
+      "label": "Primary CTA URL"
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta_label",
+      "label": "Secondary CTA label"
+    },
+    {
+      "type": "url",
+      "id": "secondary_cta_url",
+      "label": "Secondary CTA URL"
+    },
+    {
+      "type": "header",
+      "content": "Color & Spacing"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature bullet",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Feature text",
+          "default": "Modular hose system"
+        },
+        {
+          "type": "textarea",
+          "id": "icon_svg",
+          "label": "Icon SVG (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image With Text",
+      "category": "HydroLid",
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": { "text": "Modular hose system" }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": { "text": "Quick-access drinking without removing your pack" }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": { "text": "Compatible with insulated bottles" }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": { "text": "Built for rugged use" }
+        }
+      },
+      "block_order": ["feature_1", "feature_2", "feature_3", "feature_4"]
+    }
+  ]
+}
+{% endschema %}

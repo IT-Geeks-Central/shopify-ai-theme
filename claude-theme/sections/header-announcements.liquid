@@ -1,4 +1,16 @@
+{{ 'section-custom-announcement-ticker.css' | asset_url | stylesheet_tag }}
 
+{%- comment -%}HydroLid: determine if custom ticker messages are configured{%- endcomment -%}
+{%- assign has_ticker_messages = false -%}
+{%- if section.settings.message_1 != blank or section.settings.message_2 != blank -%}
+  {%- assign has_ticker_messages = true -%}
+{%- endif -%}
+
+<style>
+  #shopify-section-{{ section.id }} .hydrolid-ticker {
+    --ticker-speed: {{ section.settings.marquee_speed | default: 30 }}s;
+  }
+</style>
 
 {% if section.blocks.size > 1 %}
   <script
@@ -10,9 +22,26 @@
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <aside
-  class="announcement-bar spacing-style section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
+  class="announcement-bar spacing-style section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}{% if has_ticker_messages %} announcement-bar--has-ticker{% endif %}"
   style="{% render 'spacing-padding', settings: section.settings %}; --border-bottom-width: {{ section.settings.divider_width }}px;"
 >
+  {%- if has_ticker_messages -%}
+    <div class="hydrolid-ticker">
+      <div class="hydrolid-ticker__track">
+        {%- comment -%}Render 6 copies of the message set for seamless looping at all screen widths{%- endcomment -%}
+        {%- for i in (1..6) -%}
+          {%- if section.settings.message_1 != blank -%}
+            <span class="hydrolid-ticker__item">{{ section.settings.message_1 | escape }}</span>
+            <span class="hydrolid-ticker__sep" aria-hidden="true">✦</span>
+          {%- endif -%}
+          {%- if section.settings.message_2 != blank -%}
+            <span class="hydrolid-ticker__item">{{ section.settings.message_2 | escape }}</span>
+            <span class="hydrolid-ticker__sep" aria-hidden="true">✦</span>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
   {% liquid
     assign autoplay = false
     assign show_arrows = false
@@ -135,6 +164,36 @@
     "groups": ["header"]
   },
   "settings": [
+    {
+      "type": "header",
+      "content": "Marquee Ticker Messages"
+    },
+    {
+      "type": "text",
+      "id": "message_1",
+      "label": "Message 1",
+      "default": "HydroLid INT Now Compatible w/ Nalgene"
+    },
+    {
+      "type": "text",
+      "id": "message_2",
+      "label": "Message 2",
+      "default": "HydroLid EXT Now Compatible With YETI Ramblers!"
+    },
+    {
+      "type": "range",
+      "id": "marquee_speed",
+      "label": "Marquee speed (seconds)",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Slideshow (fallback when no ticker messages)"
+    },
     {
       "type": "range",
       "id": "speed",

@@ -1,0 +1,163 @@
+/* ============================================================
+   HydroLid — Testimonials
+   Section: custom-testimonials.liquid
+   ============================================================ */
+
+.custom-test-section {
+  overflow: hidden;
+}
+
+/* Header */
+.custom-test__header {
+  text-align: center;
+  padding: 80px 50px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.custom-test__eyebrow {
+  font-family: 'Great Sejagad Regular', 'Great Sejagad Regular Placeholder', sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-foreground-heading);
+  display: block;
+}
+
+.custom-test__heading {
+  font-family: var(--font-heading--family);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+  text-transform: capitalize;
+  color: var(--color-foreground-heading);
+  margin: 0;
+}
+
+/* Star rating badge */
+.custom-test__stars {
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+  color: #b85c2e;
+  font-size: 16px;
+  margin-top: 4px;
+}
+
+.custom-test__rating-text {
+  font-family: var(--font-body--family);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  text-transform: capitalize;
+  color: var(--color-foreground-heading);
+  margin: 0;
+}
+
+/* Ticker / scrolling row of review cards */
+.custom-test__ticker-wrap {
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 80px;
+}
+
+.custom-test__ticker {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 0 20px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.custom-test__ticker::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual review card */
+.custom-test__card {
+  min-width: 420px;
+  flex-shrink: 0;
+  background: var(--color-background);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.custom-test__card-stars {
+  display: flex;
+  gap: 3px;
+  color: #b85c2e;
+  font-size: 16px;
+}
+
+.custom-test__card-quote {
+  font-family: var(--font-body--family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-foreground);
+  flex: 1;
+  margin: 0;
+}
+
+.custom-test__card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.custom-test__card-author-name {
+  font-family: var(--font-body--family);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  text-transform: capitalize;
+  color: var(--color-foreground-heading);
+  margin: 0 0 2px;
+}
+
+.custom-test__card-author-role {
+  font-family: var(--font-body--family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-foreground-muted, var(--color-foreground));
+  margin: 0;
+}
+
+.custom-test__card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  padding: 5px 10px;
+  font-family: var(--font-body--family);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-foreground-heading);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Mobile */
+@media screen and (max-width: 749px) {
+  .custom-test__header {
+    padding: 40px 20px 20px;
+  }
+
+  .custom-test__heading { font-size: 24px; }
+  .custom-test__eyebrow { font-size: 20px; }
+
+  .custom-test__card {
+    min-width: 300px;
+  }
+}

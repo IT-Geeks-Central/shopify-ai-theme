@@ -1,0 +1,108 @@
+{{ 'section-custom-newsletter-hydrolid.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #shopify-section-{{ section.id }} .custom-nl-section {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+</style>
+
+<section
+  class="custom-nl-section color-{{ section.settings.color_scheme }}"
+  data-section-id="{{ section.id }}"
+>
+  <div class="custom-nl__inner">
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="custom-nl__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.body_text != blank -%}
+      <p class="custom-nl__body">{{ section.settings.body_text }}</p>
+    {%- endif -%}
+
+    {%- form 'customer', id: 'nl-form-{{ section.id }}', class: 'custom-nl__form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input
+        type="email"
+        name="contact[email]"
+        id="nl-email-{{ section.id }}"
+        class="custom-nl__input"
+        placeholder="{{ section.settings.input_placeholder | default: 'Enter your email' | escape }}"
+        autocomplete="email"
+        required
+        aria-label="{{ section.settings.input_placeholder | default: 'Enter your email' | escape }}"
+      >
+      <button type="submit" class="custom-nl__submit">
+        {{ section.settings.button_label | default: 'Subscribe' | escape }}
+      </button>
+    {%- endform -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "tag": "section",
+  "class": "custom-nl-section-wrapper",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Stop Settling For Warm Water."
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Body text",
+      "default": "Upgrade your hydration system today."
+    },
+    {
+      "type": "text",
+      "id": "input_placeholder",
+      "label": "Email input placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter",
+      "category": "HydroLid"
+    }
+  ]
+}
+{% endschema %}

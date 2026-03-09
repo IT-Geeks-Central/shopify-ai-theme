@@ -1,0 +1,191 @@
+/* ============================================================
+   HydroLid — FAQ / Accordion
+   Section: custom-faq.liquid
+   ============================================================ */
+
+.custom-faq-section {
+  overflow: hidden;
+}
+
+.custom-faq__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+/* Two-column layout: sidebar left, accordion right */
+.custom-faq__layout {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+}
+
+/* Sidebar (sticky) */
+.custom-faq__sidebar {
+  flex: 0 0 40%;
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.custom-faq__eyebrow {
+  font-family: 'Great Sejagad Regular', 'Great Sejagad Regular Placeholder', sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-foreground-heading);
+  display: block;
+}
+
+.custom-faq__heading {
+  font-family: var(--font-heading--family);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+  text-transform: capitalize;
+  color: var(--color-foreground-heading);
+  margin: 0;
+}
+
+.custom-faq__sidebar-body {
+  font-family: var(--font-body--family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-foreground-muted, var(--color-foreground));
+  margin: 0;
+}
+
+.custom-faq__contact-btn {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 13px 28px;
+  font-family: var(--font-body--family);
+  font-size: 14px;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: var(--color-primary-button-background);
+  color: var(--color-primary-button-text);
+  border: none;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.custom-faq__contact-btn:hover { opacity: 0.85; }
+
+/* FAQ list */
+.custom-faq__list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Individual FAQ item */
+.custom-faq__item {
+  background: var(--color-background);
+  overflow: hidden;
+}
+
+/* Question button */
+.custom-faq__question {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 20px 25px;
+  text-align: left;
+  font-family: var(--font-body--family);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-foreground-heading);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  transition: background-color 0.2s;
+}
+
+.custom-faq__question:hover {
+  background-color: rgb(var(--color-foreground-rgb) / 0.03);
+}
+
+/* Plus/minus indicator */
+.custom-faq__question-icon {
+  font-size: 22px;
+  font-weight: 400;
+  flex-shrink: 0;
+  color: var(--color-primary);
+  transition: transform 0.3s ease;
+  line-height: 1;
+}
+
+.custom-faq__item[open] .custom-faq__question-icon,
+.custom-faq__item--open .custom-faq__question-icon {
+  transform: rotate(45deg);
+}
+
+/* Answer */
+.custom-faq__answer {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease;
+}
+
+.custom-faq__item--open .custom-faq__answer {
+  max-height: 500px;
+}
+
+.custom-faq__answer-inner {
+  padding: 0 25px 20px;
+  font-family: var(--font-body--family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-foreground-muted, var(--color-foreground));
+}
+
+/* Tablet */
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .custom-faq__layout {
+    flex-direction: column;
+  }
+
+  .custom-faq__sidebar {
+    position: static;
+    flex: 1;
+  }
+
+  .custom-faq__heading { font-size: 28px; }
+}
+
+/* Mobile */
+@media screen and (max-width: 749px) {
+  .custom-faq__inner {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .custom-faq__layout {
+    flex-direction: column;
+  }
+
+  .custom-faq__sidebar {
+    position: static;
+    flex: 1;
+    gap: 12px;
+  }
+
+  .custom-faq__heading { font-size: 24px; }
+  .custom-faq__eyebrow { font-size: 20px; }
+}

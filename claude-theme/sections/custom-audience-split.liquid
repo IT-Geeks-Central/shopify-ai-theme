@@ -1,0 +1,208 @@
+{{ 'section-custom-audience-split.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  #shopify-section-{{ section.id }} .custom-as__wrapper {
+    --as-height: {{ section.settings.section_height }}px;
+  }
+</style>
+
+<section
+  class="custom-as-section color-{{ section.settings.color_scheme }}"
+  data-section-id="{{ section.id }}"
+>
+  <div class="custom-as__wrapper">
+
+    {%- comment -%}LEFT PANEL{%- endcomment -%}
+    <div class="custom-as__panel">
+      <div class="custom-as__panel-bg" aria-hidden="true">
+        {%- if section.settings.left_image != blank -%}
+          {%- assign left_alt = section.settings.left_image.alt | default: section.settings.left_heading | escape -%}
+          {{
+            section.settings.left_image
+            | image_url: width: 1200
+            | image_tag:
+              loading: 'lazy',
+              alt: left_alt,
+              widths: '375, 600, 900, 1200',
+              sizes: '(max-width: 749px) 100vw, 50vw'
+          }}
+        {%- else -%}
+          <div style="width:100%;height:100%;background:var(--color-background);"></div>
+        {%- endif -%}
+      </div>
+      <div class="custom-as__panel-overlay" aria-hidden="true"></div>
+      <div class="custom-as__panel-content">
+        {%- if section.settings.left_heading != blank -%}
+          <h2 class="custom-as__panel-heading">{{ section.settings.left_heading | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.left_subtext != blank -%}
+          <p class="custom-as__panel-body">{{ section.settings.left_subtext }}</p>
+        {%- endif -%}
+        {%- if section.settings.left_cta_label != blank -%}
+          <a href="{{ section.settings.left_cta_url | default: '#' }}" class="custom-as__panel-btn">
+            {{ section.settings.left_cta_label | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- comment -%}RIGHT PANEL{%- endcomment -%}
+    <div class="custom-as__panel">
+      <div class="custom-as__panel-bg" aria-hidden="true">
+        {%- if section.settings.right_image != blank -%}
+          {%- assign right_alt = section.settings.right_image.alt | default: section.settings.right_heading | escape -%}
+          {{
+            section.settings.right_image
+            | image_url: width: 1200
+            | image_tag:
+              loading: 'lazy',
+              alt: right_alt,
+              widths: '375, 600, 900, 1200',
+              sizes: '(max-width: 749px) 100vw, 50vw'
+          }}
+        {%- else -%}
+          <div style="width:100%;height:100%;background:var(--color-foreground);opacity:0.1;"></div>
+        {%- endif -%}
+      </div>
+      <div class="custom-as__panel-overlay" aria-hidden="true"></div>
+      <div class="custom-as__panel-content">
+        {%- if section.settings.right_heading != blank -%}
+          <h2 class="custom-as__panel-heading">{{ section.settings.right_heading | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.right_subtext != blank -%}
+          <p class="custom-as__panel-body">{{ section.settings.right_subtext }}</p>
+        {%- endif -%}
+        {%- if section.settings.right_cta_label != blank -%}
+          <a href="{{ section.settings.right_cta_url | default: '#' }}" class="custom-as__panel-btn">
+            {{ section.settings.right_cta_label | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Audience Split Banners",
+  "tag": "section",
+  "class": "custom-as-section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left Panel"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left background image"
+    },
+    {
+      "type": "text",
+      "id": "left_heading",
+      "label": "Left heading",
+      "default": "For Wildland Firefighters"
+    },
+    {
+      "type": "textarea",
+      "id": "left_subtext",
+      "label": "Left subtext",
+      "default": "Operational hydration that won't fail when the heat hits triple digits. Built for the fire line."
+    },
+    {
+      "type": "text",
+      "id": "left_cta_label",
+      "label": "Left CTA label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "left_cta_url",
+      "label": "Left CTA URL"
+    },
+    {
+      "type": "header",
+      "content": "Right Panel"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Right background image"
+    },
+    {
+      "type": "text",
+      "id": "right_heading",
+      "label": "Right heading",
+      "default": "For Hikers & Backpackers"
+    },
+    {
+      "type": "textarea",
+      "id": "right_subtext",
+      "label": "Right subtext",
+      "default": "Ditch the heavy bladder. Upgrade your trail experience with ice-cold water access."
+    },
+    {
+      "type": "text",
+      "id": "right_cta_label",
+      "label": "Right CTA label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "right_cta_url",
+      "label": "Right CTA URL"
+    },
+    {
+      "type": "header",
+      "content": "Dimensions & Style"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "Panel height",
+      "min": 400,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Audience Split Banners",
+      "category": "HydroLid"
+    }
+  ]
+}
+{% endschema %}

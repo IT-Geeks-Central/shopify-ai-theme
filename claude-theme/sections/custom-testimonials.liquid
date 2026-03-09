@@ -1,0 +1,176 @@
+{{ 'section-custom-testimonials-hydrolid.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #shopify-section-{{ section.id }} .custom-test-section {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+</style>
+
+<section
+  class="custom-test-section color-{{ section.settings.color_scheme }}"
+  data-section-id="{{ section.id }}"
+>
+
+  {%- comment -%}Section header{%- endcomment -%}
+  <div class="custom-test__header">
+    {%- if section.settings.eyebrow_text != blank -%}
+      <span class="custom-test__eyebrow">{{ section.settings.eyebrow_text | escape }}</span>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="custom-test__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    <div class="custom-test__stars" aria-hidden="true">★★★★★</div>
+    {%- if section.settings.rating_badge != blank -%}
+      <p class="custom-test__rating-text">{{ section.settings.rating_badge | escape }}</p>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%}Review cards row (horizontally scrollable){%- endcomment -%}
+  <div class="custom-test__ticker-wrap">
+    <div class="custom-test__ticker">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'review' -%}
+          <div class="custom-test__card" {{ block.shopify_attributes }}>
+            <div class="custom-test__card-stars" aria-label="5 stars">★★★★★</div>
+            {%- if block.settings.quote != blank -%}
+              <p class="custom-test__card-quote">{{ block.settings.quote }}</p>
+            {%- endif -%}
+            <div class="custom-test__card-footer">
+              <div class="custom-test__card-author">
+                <p class="custom-test__card-author-name">{{ block.settings.reviewer_name | escape }}</p>
+                {%- if block.settings.reviewer_role != blank -%}
+                  <p class="custom-test__card-author-role">{{ block.settings.reviewer_role | escape }}</p>
+                {%- endif -%}
+              </div>
+              <span class="custom-test__card-badge">
+                <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                {{ section.settings.verified_label | default: 'Verified Buyer' | escape }}
+              </span>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "tag": "section",
+  "class": "custom-test-section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow",
+      "default": "The System"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Tested Where Failure Isn't an Option."
+    },
+    {
+      "type": "text",
+      "id": "rating_badge",
+      "label": "Rating badge text",
+      "default": "4.9/5 Rating"
+    },
+    {
+      "type": "text",
+      "id": "verified_label",
+      "label": "Verified buyer label",
+      "default": "Verified Buyer"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Review quote",
+          "default": "\"We've had issues with bladders popping in high heat. Hydrolid changed that.\""
+        },
+        {
+          "type": "text",
+          "id": "reviewer_name",
+          "label": "Reviewer name",
+          "default": "Sgt. Mark Harrison"
+        },
+        {
+          "type": "text",
+          "id": "reviewer_role",
+          "label": "Reviewer role / title",
+          "default": "US Marine Corps"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "category": "HydroLid",
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "quote": "\"We've had issues with bladders popping in high heat. Hydrolid changed that. My Nalgene is now my hydration pack, and it doesn't fail.\"",
+            "reviewer_name": "Sgt. Mark Harrison",
+            "reviewer_role": "US Marine Corps"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "quote": "\"The Hydrolid is standard gear for me now. It's built for the same conditions we are—tough, reliable, and it actually keeps water cool.\"",
+            "reviewer_name": "Sarah Miller",
+            "reviewer_role": "Wildland Firefighter"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "quote": "\"It's the only hydration system that doesn't feel like a cheap plastic toy. The military-grade construction is evident from the first use.\"",
+            "reviewer_name": "David Vance",
+            "reviewer_role": "Professional Climber"
+          }
+        }
+      },
+      "block_order": ["review_1", "review_2", "review_3"]
+    }
+  ]
+}
+{% endschema %}

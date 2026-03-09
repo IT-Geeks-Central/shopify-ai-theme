@@ -1,0 +1,246 @@
+/* ============================================================
+   HydroLid — Custom Hero Banner
+   Section: custom-hero.liquid
+   ============================================================ */
+
+/* Great Sejagad Regular — eyebrow font */
+@font-face {
+  font-family: 'Great Sejagad Regular';
+  src: url('GreatSejagadRegular.woff2') format('woff2'),
+       url('GreatSejagadRegular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Wrapper ------------------------------------------------ */
+.custom-hero-section {
+  position: relative;
+  min-height: 620px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* --- Background image --------------------------------------- */
+.custom-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.custom-hero__bg img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Mobile image: hidden by default, shown only on small screens */
+.custom-hero__bg-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  .custom-hero__bg-mobile {
+    display: block;
+  }
+  /* When a mobile image is present, hide the desktop image */
+  .custom-hero__bg:has(.custom-hero__bg-mobile) .custom-hero__bg-desktop {
+    display: none;
+  }
+}
+
+/* --- Dark gradient overlay ---------------------------------- */
+.custom-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.20) 55%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* --- Content block ------------------------------------------ */
+.custom-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 580px;
+  padding: 0 30px 120px 50px;
+  color: #ffffff;
+}
+
+/* Eyebrow */
+.custom-hero__eyebrow {
+  font-family: 'Great Sejagad Regular', 'Great Sejagad Regular Placeholder', sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #ffffff;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* H1 */
+.custom-hero__heading {
+  font-family: var(--font-heading--family);
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  text-transform: capitalize;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+/* Body text */
+.custom-hero__body {
+  font-family: var(--font-body--family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 24px;
+  max-width: 480px;
+}
+
+/* CTA buttons row */
+.custom-hero__buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.custom-hero__btn {
+  display: inline-block;
+  padding: 13px 28px;
+  font-family: var(--font-body--family);
+  font-size: 14px;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.custom-hero__btn:hover {
+  opacity: 0.85;
+}
+
+.custom-hero__btn--primary {
+  background-color: var(--color-primary-button-background);
+  color: var(--color-primary-button-text);
+}
+
+.custom-hero__btn--secondary {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+/* --- Floating product card ---------------------------------- */
+.custom-hero__product-card {
+  position: absolute;
+  right: 21px;
+  bottom: 91px;
+  z-index: 3;
+  background: #ffffff;
+  padding: 10px;
+  width: 300px;
+}
+
+.custom-hero__product-card-img {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.custom-hero__product-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.custom-hero__product-card-title {
+  font-family: var(--font-body--family);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  text-transform: capitalize;
+  color: #111;
+  margin-bottom: 5px;
+}
+
+.custom-hero__product-card-price {
+  font-family: var(--font-heading--family);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-primary);
+}
+
+/* --- Tablet (750px–989px) ----------------------------------- */
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .custom-hero__content {
+    max-width: 70%;
+    padding-bottom: 80px;
+  }
+
+  .custom-hero__product-card {
+    display: none;
+  }
+
+  .custom-hero__heading {
+    font-size: 38px;
+  }
+
+  .custom-hero__eyebrow {
+    font-size: 22px;
+  }
+}
+
+/* --- Mobile (≤749px) --------------------------------------- */
+@media screen and (max-width: 749px) {
+  .custom-hero-section {
+    min-height: 500px;
+    align-items: flex-end;
+  }
+
+  .custom-hero__content {
+    max-width: 100%;
+    padding: 0 20px 60px;
+  }
+
+  .custom-hero__heading {
+    font-size: 28px;
+    letter-spacing: -0.5px;
+  }
+
+  .custom-hero__eyebrow {
+    font-size: 20px;
+  }
+
+  .custom-hero__body {
+    font-size: 15px;
+  }
+
+  /* On mobile, hide the product card */
+  .custom-hero__product-card {
+    display: none;
+  }
+}
