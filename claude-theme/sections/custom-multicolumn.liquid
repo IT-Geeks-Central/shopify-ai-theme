@@ -7,12 +7,9 @@
   }
 </style>
 
-{%- liquid
-  assign layout_style = section.settings.layout_style | default: 'grid-3'
-  assign header_align = section.settings.header_alignment | default: 'left'
-  assign col_count = section.blocks | where: 'type', 'column' | size
-  assign show_dividers = section.settings.show_column_dividers
--%}
+{%- assign layout_style = section.settings.layout_style | default: 'grid-3' -%}
+{%- assign header_align = section.settings.header_alignment | default: 'left' -%}
+{%- assign show_dividers = section.settings.show_column_dividers -%}
 
 <section
   class="custom-mc-section color-{{ section.settings.color_scheme }}"
