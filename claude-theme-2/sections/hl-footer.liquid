@@ -39,7 +39,7 @@
 
     <!-- Equipment Column -->
     <div class="hl-footer-col">
-      <h4>{{ section.settings.col2_title | default: 'Equipment' | escape }}</h4>
+      <h4 style="font-size:{{ section.settings.subheading_size }}px;">{{ section.settings.col2_title | default: 'Equipment' | escape }}</h4>
       {%- for block in section.blocks -%}
         {%- if block.type == 'col2_link' -%}
           <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
@@ -51,7 +51,7 @@
 
     <!-- Mission Column -->
     <div class="hl-footer-col">
-      <h4>{{ section.settings.col3_title | default: 'The Mission' | escape }}</h4>
+      <h4 style="font-size:{{ section.settings.subheading_size }}px;">{{ section.settings.col3_title | default: 'The Mission' | escape }}</h4>
       {%- for block in section.blocks -%}
         {%- if block.type == 'col3_link' -%}
           <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
@@ -63,7 +63,7 @@
 
     <!-- Information Column -->
     <div class="hl-footer-col">
-      <h4>{{ section.settings.col4_title | default: 'Information' | escape }}</h4>
+      <h4 style="font-size:{{ section.settings.subheading_size }}px;">{{ section.settings.col4_title | default: 'Information' | escape }}</h4>
       {%- for block in section.blocks -%}
         {%- if block.type == 'col4_link' -%}
           <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
@@ -77,7 +77,7 @@
 
   <!-- Footer Bottom -->
   <div class="hl-footer-bottom">
-    <p class="hl-body-14">
+    <p class="hl-body-14" style="font-size:{{ section.settings.body_size }}px;">
       &copy; {{ 'now' | date: '%Y' }} {{ section.settings.brand_name | default: 'HydroLid' | escape }}. All rights reserved.
     </p>
     <div class="hl-payment-icons">
@@ -155,6 +155,60 @@
       "id": "col4_title",
       "label": "Column 4 Title",
       "default": "Information"
+    },
+    {
+      "type": "header",
+      "content": "Font Sizes"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "min": 16,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading Size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Button Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
     }
   ],
   "blocks": [

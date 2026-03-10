@@ -7,57 +7,92 @@
     <div class="hl-section-header">
       <div class="hl-section-header-left">
         {%- if section.settings.eyebrow != blank -%}
-          <p class="hl-sub-heading" style="color:{{ section.settings.eyebrow_color }};">
+          <p class="hl-sub-heading" style="color:{{ section.settings.eyebrow_color }};font-size:{{ section.settings.eyebrow_size }}px;">
             {{ section.settings.eyebrow | escape }}
           </p>
         {%- endif -%}
         {%- if section.settings.heading != blank -%}
-          <h2>{{ section.settings.heading | escape }}</h2>
+          <h2 style="font-size:{{ section.settings.heading_size }}px;">{{ section.settings.heading | escape }}</h2>
         {%- endif -%}
       </div>
       {%- if section.settings.btn_label != blank -%}
-        <a href="{{ section.settings.btn_url }}" class="hl-btn hl-btn-accent">
+        <a href="{{ section.settings.btn_url }}" class="hl-btn hl-btn-accent" style="font-size:{{ section.settings.button_size }}px;">
           {{ section.settings.btn_label | escape }}
         </a>
       {%- endif -%}
     </div>
 
-    <!-- Product Grid -->
+    <!-- Product Grid — dynamic pickers if set, blocks as fallback -->
     <div class="hl-product-grid">
-      {%- for block in section.blocks -%}
-        <div class="hl-product-card" {{ block.shopify_attributes }}>
-          <div class="hl-product-card-image">
-            {%- if block.settings.image != blank -%}
-              <img
-                src="{{ block.settings.image | image_url: width: 600 }}"
-                alt="{{ block.settings.image.alt | default: block.settings.title | escape }}"
-                loading="lazy"
-                width="300"
-                height="300"
-              >
-            {%- else -%}
-              <img
-                src="{{ block.settings.image_url }}"
-                alt="{{ block.settings.title | escape }}"
-                loading="lazy"
-                style="width:100%;height:100%;object-fit:cover;"
-              >
-            {%- endif -%}
+      {%- if section.settings.product_1 != blank or section.settings.product_2 != blank or section.settings.product_3 != blank or section.settings.product_4 != blank -%}
+        {%- assign dp1 = all_products[section.settings.product_1] -%}
+        {%- unless dp1 == empty -%}
+          <div class="hl-product-card">
+            <a href="{{ dp1.url }}"><div class="hl-product-card-image"><img src="{{ dp1.featured_image | image_url: width: 600 }}" alt="{{ dp1.title | escape }}" loading="lazy" width="300" height="300"></div></a>
+            <div class="hl-product-card-info">
+              <div class="hl-product-card-stars">★★★★★</div>
+              <h6 style="font-size:{{ section.settings.subheading_size }}px;">{{ dp1.title }}</h6>
+              <p class="hl-product-card-price">{{ dp1.price | money }}</p>
+            </div>
+            {%- form 'product', dp1 -%}<input type="hidden" name="id" value="{{ dp1.selected_or_first_available_variant.id }}"><button type="submit" name="add" class="hl-btn hl-btn-accent" style="font-size:{{ section.settings.button_size }}px;">Add to Cart</button>{%- endform -%}
           </div>
-          <div class="hl-product-card-info">
-            {%- if block.settings.show_stars -%}
-              <div class="hl-product-card-stars">★★★★★ <span>{{ block.settings.rating }}</span></div>
-            {%- endif -%}
-            {%- if block.settings.title != blank -%}
-              <h6>{{ block.settings.title | escape }}</h6>
-            {%- endif -%}
-            {%- if block.settings.price != blank -%}
-              <p class="hl-product-card-price">{{ block.settings.price | escape }}</p>
-            {%- endif -%}
+        {%- endunless -%}
+        {%- assign dp2 = all_products[section.settings.product_2] -%}
+        {%- unless dp2 == empty -%}
+          <div class="hl-product-card">
+            <a href="{{ dp2.url }}"><div class="hl-product-card-image"><img src="{{ dp2.featured_image | image_url: width: 600 }}" alt="{{ dp2.title | escape }}" loading="lazy" width="300" height="300"></div></a>
+            <div class="hl-product-card-info">
+              <div class="hl-product-card-stars">★★★★★</div>
+              <h6 style="font-size:{{ section.settings.subheading_size }}px;">{{ dp2.title }}</h6>
+              <p class="hl-product-card-price">{{ dp2.price | money }}</p>
+            </div>
+            {%- form 'product', dp2 -%}<input type="hidden" name="id" value="{{ dp2.selected_or_first_available_variant.id }}"><button type="submit" name="add" class="hl-btn hl-btn-accent" style="font-size:{{ section.settings.button_size }}px;">Add to Cart</button>{%- endform -%}
           </div>
-          <a href="{{ block.settings.product_url }}" class="hl-btn hl-btn-accent">Add To Cart</a>
-        </div>
-      {%- endfor -%}
+        {%- endunless -%}
+        {%- assign dp3 = all_products[section.settings.product_3] -%}
+        {%- unless dp3 == empty -%}
+          <div class="hl-product-card">
+            <a href="{{ dp3.url }}"><div class="hl-product-card-image"><img src="{{ dp3.featured_image | image_url: width: 600 }}" alt="{{ dp3.title | escape }}" loading="lazy" width="300" height="300"></div></a>
+            <div class="hl-product-card-info">
+              <div class="hl-product-card-stars">★★★★★</div>
+              <h6 style="font-size:{{ section.settings.subheading_size }}px;">{{ dp3.title }}</h6>
+              <p class="hl-product-card-price">{{ dp3.price | money }}</p>
+            </div>
+            {%- form 'product', dp3 -%}<input type="hidden" name="id" value="{{ dp3.selected_or_first_available_variant.id }}"><button type="submit" name="add" class="hl-btn hl-btn-accent" style="font-size:{{ section.settings.button_size }}px;">Add to Cart</button>{%- endform -%}
+          </div>
+        {%- endunless -%}
+        {%- assign dp4 = all_products[section.settings.product_4] -%}
+        {%- unless dp4 == empty -%}
+          <div class="hl-product-card">
+            <a href="{{ dp4.url }}"><div class="hl-product-card-image"><img src="{{ dp4.featured_image | image_url: width: 600 }}" alt="{{ dp4.title | escape }}" loading="lazy" width="300" height="300"></div></a>
+            <div class="hl-product-card-info">
+              <div class="hl-product-card-stars">★★★★★</div>
+              <h6 style="font-size:{{ section.settings.subheading_size }}px;">{{ dp4.title }}</h6>
+              <p class="hl-product-card-price">{{ dp4.price | money }}</p>
+            </div>
+            {%- form 'product', dp4 -%}<input type="hidden" name="id" value="{{ dp4.selected_or_first_available_variant.id }}"><button type="submit" name="add" class="hl-btn hl-btn-accent" style="font-size:{{ section.settings.button_size }}px;">Add to Cart</button>{%- endform -%}
+          </div>
+        {%- endunless -%}
+      {%- else -%}
+        {%- comment -%} Fallback: render blocks (existing configuration) {%- endcomment -%}
+        {%- for block in section.blocks -%}
+          <div class="hl-product-card" {{ block.shopify_attributes }}>
+            <div class="hl-product-card-image">
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.image.alt | default: block.settings.title | escape }}" loading="lazy" width="300" height="300">
+              {%- else -%}
+                <img src="{{ block.settings.image_url }}" alt="{{ block.settings.title | escape }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+              {%- endif -%}
+            </div>
+            <div class="hl-product-card-info">
+              {%- if block.settings.show_stars -%}<div class="hl-product-card-stars">★★★★★ <span>{{ block.settings.rating }}</span></div>{%- endif -%}
+              {%- if block.settings.title != blank -%}<h6 style="font-size:{{ section.settings.subheading_size }}px;">{{ block.settings.title | escape }}</h6>{%- endif -%}
+              {%- if block.settings.price != blank -%}<p class="hl-product-card-price">{{ block.settings.price | escape }}</p>{%- endif -%}
+            </div>
+            <a href="{{ block.settings.product_url }}" class="hl-btn hl-btn-accent" style="font-size:{{ section.settings.button_size }}px;">Add To Cart</a>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
     </div>
 
   </div>
@@ -96,6 +131,84 @@
       "type": "url",
       "id": "btn_url",
       "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Featured Products (Dynamic)"
+    },
+    {
+      "type": "product",
+      "id": "product_1",
+      "label": "Product 1"
+    },
+    {
+      "type": "product",
+      "id": "product_2",
+      "label": "Product 2"
+    },
+    {
+      "type": "product",
+      "id": "product_3",
+      "label": "Product 3"
+    },
+    {
+      "type": "product",
+      "id": "product_4",
+      "label": "Product 4"
+    },
+    {
+      "type": "header",
+      "content": "Font Sizes"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "min": 16,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading Size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Button Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
     }
   ],
   "blocks": [

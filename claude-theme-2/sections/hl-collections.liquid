@@ -25,13 +25,13 @@
         <div class="hl-collection-card-overlay"></div>
         <div class="hl-collection-card-content">
           {%- if block.settings.heading != blank -%}
-            <h3>{{ block.settings.heading | escape }}</h3>
+            <h3 style="font-size:{{ section.settings.heading_size }}px;">{{ block.settings.heading | escape }}</h3>
           {%- endif -%}
           {%- if block.settings.description != blank -%}
-            <p class="hl-body-14">{{ block.settings.description | escape }}</p>
+            <p class="hl-body-14" style="font-size:{{ section.settings.body_size }}px;">{{ block.settings.description | escape }}</p>
           {%- endif -%}
           {%- if block.settings.btn_label != blank -%}
-            <a href="{{ block.settings.btn_url }}" class="hl-btn hl-btn-white">
+            <a href="{{ block.settings.btn_url }}" class="hl-btn hl-btn-white" style="font-size:{{ section.settings.button_size }}px;">
               {{ block.settings.btn_label | escape }}
             </a>
           {%- endif -%}
@@ -45,7 +45,62 @@
 {
   "name": "HL Shop By Category",
   "tag": "div",
-  "settings": [],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Font Sizes"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "min": 16,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading Size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Button Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    }
+  ],
   "blocks": [
     {
       "type": "collection_card",

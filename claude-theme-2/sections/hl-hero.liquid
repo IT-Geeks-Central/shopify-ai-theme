@@ -29,59 +29,80 @@
   <!-- Hero Text Content -->
   <div class="hl-hero-content">
     {%- if section.settings.eyebrow != blank -%}
-      <p class="hl-sub-heading" style="color:{{ section.settings.eyebrow_color }};">
+      <p class="hl-sub-heading" style="color:{{ section.settings.eyebrow_color }};font-size:{{ section.settings.eyebrow_size }}px;">
         {{ section.settings.eyebrow | escape }}
       </p>
     {%- endif -%}
 
     {%- if section.settings.heading != blank -%}
-      <h1>{{ section.settings.heading | escape }}</h1>
+      <h1 style="font-size:{{ section.settings.heading_size }}px;">{{ section.settings.heading | escape }}</h1>
     {%- endif -%}
 
     {%- if section.settings.description != blank -%}
-      <p class="hl-body-14">{{ section.settings.description | escape }}</p>
+      <p class="hl-body-14" style="font-size:{{ section.settings.body_size }}px;">{{ section.settings.description | escape }}</p>
     {%- endif -%}
 
     <div class="hl-hero-buttons">
       {%- if section.settings.btn1_label != blank -%}
-        <a href="{{ section.settings.btn1_url }}" class="hl-btn hl-btn-outline-white">
+        <a href="{{ section.settings.btn1_url }}" class="hl-btn hl-btn-outline-white" style="font-size:{{ section.settings.button_size }}px;">
           {{ section.settings.btn1_label | escape }}
         </a>
       {%- endif -%}
       {%- if section.settings.btn2_label != blank -%}
-        <a href="{{ section.settings.btn2_url }}" class="hl-btn hl-btn-accent">
+        <a href="{{ section.settings.btn2_url }}" class="hl-btn hl-btn-accent" style="font-size:{{ section.settings.button_size }}px;">
           {{ section.settings.btn2_label | escape }}
         </a>
       {%- endif -%}
     </div>
   </div>
 
-  <!-- Floating Product Card -->
+  <!-- Floating Product Card (dynamic via banner_product picker, or static fallback) -->
   <div class="hl-hero-product-card">
-    <div class="hl-card-img">
-      {%- if section.settings.card_image != blank -%}
+    {%- assign hero_product = all_products[section.settings.banner_product] -%}
+    {%- unless hero_product == empty -%}
+      <a href="{{ hero_product.url }}" class="hl-card-img">
         <img
-          src="{{ section.settings.card_image | image_url: width: 600 }}"
-          alt="{{ section.settings.card_image.alt | escape }}"
+          src="{{ hero_product.featured_image | image_url: width: 600 }}"
+          alt="{{ hero_product.title | escape }}"
           loading="lazy"
           width="280"
           height="280"
         >
-      {%- else -%}
-        <img
-          src="https://images.unsplash.com/photo-1553531384-cc64ac80f931?w=600&h=600&fit=crop"
-          alt="{{ section.settings.card_title | escape }}"
-          loading="lazy"
-          style="width:100%;height:100%;object-fit:cover;"
-        >
+      </a>
+      <h6 style="font-size:{{ section.settings.subheading_size }}px;">{{ hero_product.title }}</h6>
+      <p class="hl-price">{{ hero_product.price | money }}</p>
+      {%- form 'product', hero_product -%}
+        <input type="hidden" name="id" value="{{ hero_product.selected_or_first_available_variant.id }}">
+        <button type="submit" name="add" class="hl-btn hl-btn-accent" style="font-size:{{ section.settings.button_size }}px;">
+          Add to Cart
+        </button>
+      {%- endform -%}
+    {%- else -%}
+      <div class="hl-card-img">
+        {%- if section.settings.card_image != blank -%}
+          <img
+            src="{{ section.settings.card_image | image_url: width: 600 }}"
+            alt="{{ section.settings.card_image.alt | escape }}"
+            loading="lazy"
+            width="280"
+            height="280"
+          >
+        {%- else -%}
+          <img
+            src="https://images.unsplash.com/photo-1553531384-cc64ac80f931?w=600&h=600&fit=crop"
+            alt="{{ section.settings.card_title | escape }}"
+            loading="lazy"
+            style="width:100%;height:100%;object-fit:cover;"
+          >
+        {%- endif -%}
+      </div>
+      {%- if section.settings.card_title != blank -%}
+        <h6 style="font-size:{{ section.settings.subheading_size }}px;">{{ section.settings.card_title | escape }}</h6>
       {%- endif -%}
-    </div>
-    {%- if section.settings.card_title != blank -%}
-      <h6>{{ section.settings.card_title | escape }}</h6>
-    {%- endif -%}
-    {%- if section.settings.card_price != blank -%}
-      <p class="hl-price">{{ section.settings.card_price | escape }}</p>
-    {%- endif -%}
+      {%- if section.settings.card_price != blank -%}
+        <p class="hl-price">{{ section.settings.card_price | escape }}</p>
+      {%- endif -%}
+    {%- endunless -%}
   </div>
 
   <!-- Bottom Wave Separator -->
@@ -189,6 +210,70 @@
       "id": "card_price",
       "label": "Card Price",
       "default": "$139.00"
+    },
+    {
+      "type": "header",
+      "content": "Featured Product (Dynamic)"
+    },
+    {
+      "type": "product",
+      "id": "banner_product",
+      "label": "Featured Product",
+      "info": "When set, overrides the static card image/title/price above and shows a native Add to Cart form."
+    },
+    {
+      "type": "header",
+      "content": "Font Sizes"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size",
+      "min": 16,
+      "max": 80,
+      "step": 1,
+      "default": 52,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading Font Size",
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "default": 24,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body Text Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow Text Font Size",
+      "min": 10,
+      "max": 36,
+      "step": 1,
+      "default": 26,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Button Text Font Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 14,
+      "unit": "px"
     }
   ],
   "presets": [

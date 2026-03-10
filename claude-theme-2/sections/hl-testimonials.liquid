@@ -6,12 +6,12 @@
   <div class="hl-testimonials-header hl-container-narrow">
     <div class="hl-section-header-center" style="margin-bottom:10px;">
       {%- if section.settings.eyebrow != blank -%}
-        <p class="hl-sub-heading" style="color:{{ section.settings.eyebrow_color }};">
+        <p class="hl-sub-heading" style="color:{{ section.settings.eyebrow_color }};font-size:{{ section.settings.eyebrow_size }}px;">
           {{ section.settings.eyebrow | escape }}
         </p>
       {%- endif -%}
       {%- if section.settings.heading != blank -%}
-        <h2>{{ section.settings.heading | escape }}</h2>
+        <h2 style="font-size:{{ section.settings.heading_size }}px;">{{ section.settings.heading | escape }}</h2>
       {%- endif -%}
     </div>
     <div class="hl-stars">
@@ -37,10 +37,10 @@
         <div class="hl-review-author">
           <div class="hl-review-author-info">
             {%- if block.settings.author_name != blank -%}
-              <h6>{{ block.settings.author_name | escape }}</h6>
+              <h6 style="font-size:{{ section.settings.subheading_size }}px;">{{ block.settings.author_name | escape }}</h6>
             {%- endif -%}
             {%- if block.settings.author_role != blank -%}
-              <p class="hl-body-14">{{ block.settings.author_role | escape }}</p>
+              <p class="hl-body-14" style="font-size:{{ section.settings.body_size }}px;">{{ block.settings.author_role | escape }}</p>
             {%- endif -%}
           </div>
           <span class="hl-review-badge">
@@ -84,6 +84,60 @@
       "id": "rating_text",
       "label": "Rating Text",
       "default": "4.9/5 Rating"
+    },
+    {
+      "type": "header",
+      "content": "Font Sizes"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "min": 16,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading Size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Button Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
     }
   ],
   "blocks": [

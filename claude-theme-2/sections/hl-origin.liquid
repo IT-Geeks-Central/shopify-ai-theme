@@ -7,12 +7,12 @@
       <!-- Section Header -->
       <div class="hl-section-header-left" style="margin-bottom:30px;">
         {%- if section.settings.eyebrow != blank -%}
-          <p class="hl-sub-heading" style="color:var(--hl-white);">
+          <p class="hl-sub-heading" style="color:var(--hl-white);font-size:{{ section.settings.eyebrow_size }}px;">
             {{ section.settings.eyebrow | escape }}
           </p>
         {%- endif -%}
         {%- if section.settings.heading != blank -%}
-          <h2 style="color:var(--hl-white);">{{ section.settings.heading | escape }}</h2>
+          <h2 style="color:var(--hl-white);font-size:{{ section.settings.heading_size }}px;">{{ section.settings.heading | escape }}</h2>
         {%- endif -%}
       </div>
 
@@ -41,13 +41,11 @@
 
     <!-- Video -->
     <div class="hl-origin-video">
-      <video
-        src="{{ section.settings.video_url }}"
-        autoplay
-        loop
-        muted
-        playsinline
-      ></video>
+      {%- if section.settings.background_video != blank -%}
+        {{ section.settings.background_video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true }}
+      {%- elsif section.settings.video_url != blank -%}
+        <video src="{{ section.settings.video_url }}" autoplay loop muted playsinline></video>
+      {%- endif -%}
     </div>
 
   </div>
@@ -75,6 +73,65 @@
       "id": "video_url",
       "label": "Video URL",
       "default": "https://framerusercontent.com/assets/MLWPbW1dUQawJLhhun3dBwpgJak.mp4"
+    },
+    {
+      "type": "video",
+      "id": "background_video",
+      "label": "Background Video (Shopify)"
+    },
+    {
+      "type": "header",
+      "content": "Font Sizes"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "min": 16,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading Size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Button Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
     }
   ],
   "blocks": [

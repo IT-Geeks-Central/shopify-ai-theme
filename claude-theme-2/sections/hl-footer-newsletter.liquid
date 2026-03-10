@@ -2,10 +2,10 @@
 
 <div class="hl-footer-newsletter hl-section">
   {%- if section.settings.heading != blank -%}
-    <h2>{{ section.settings.heading | escape }}</h2>
+    <h2 style="font-size:{{ section.settings.heading_size }}px;">{{ section.settings.heading | escape }}</h2>
   {%- endif -%}
   {%- if section.settings.description != blank -%}
-    <p class="hl-body-14">{{ section.settings.description | escape }}</p>
+    <p class="hl-body-14" style="font-size:{{ section.settings.body_size }}px;">{{ section.settings.description | escape }}</p>
   {%- endif -%}
   {%- form 'customer', id: 'hl-newsletter-form' -%}
     <input type="hidden" name="contact[tags]" value="newsletter">
@@ -17,7 +17,7 @@
         aria-label="{{ section.settings.placeholder | default: 'Email address' }}"
         required
       >
-      <button type="submit" class="hl-btn hl-btn-accent">
+      <button type="submit" class="hl-btn hl-btn-accent" style="font-size:{{ section.settings.button_size }}px;">
         {{ section.settings.btn_label | default: 'Subscribe' | escape }}
       </button>
     </div>
@@ -57,6 +57,60 @@
       "id": "btn_label",
       "label": "Button Label",
       "default": "Subscribe"
+    },
+    {
+      "type": "header",
+      "content": "Font Sizes"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "min": 16,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading Size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Button Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
     }
   ],
   "presets": [

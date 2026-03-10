@@ -5,12 +5,12 @@
   <div class="hl-container-narrow hl-inuse-header">
     <div class="hl-section-header-center">
       {%- if section.settings.eyebrow != blank -%}
-        <p class="hl-sub-heading" style="color:{{ section.settings.eyebrow_color }};">
+        <p class="hl-sub-heading" style="color:{{ section.settings.eyebrow_color }};font-size:{{ section.settings.eyebrow_size }}px;">
           {{ section.settings.eyebrow | escape }}
         </p>
       {%- endif -%}
       {%- if section.settings.heading != blank -%}
-        <h2>{{ section.settings.heading | escape }}</h2>
+        <h2 style="font-size:{{ section.settings.heading_size }}px;">{{ section.settings.heading | escape }}</h2>
       {%- endif -%}
     </div>
   </div>
@@ -20,17 +20,15 @@
     {%- for block in section.blocks -%}
       <div class="hl-insta-card" {{ block.shopify_attributes }}>
         <div class="hl-insta-card-video">
-          <video
-            src="{{ block.settings.video_url }}"
-            autoplay
-            loop
-            muted
-            playsinline
-          ></video>
+          {%- if block.settings.background_video != blank -%}
+            {{ block.settings.background_video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true }}
+          {%- elsif block.settings.video_url != blank -%}
+            <video src="{{ block.settings.video_url }}" autoplay loop muted playsinline></video>
+          {%- endif -%}
         </div>
         <div class="hl-insta-card-info">
           {%- if block.settings.title != blank -%}
-            <h6>{{ block.settings.title | escape }}</h6>
+            <h6 style="font-size:{{ section.settings.subheading_size }}px;">{{ block.settings.title | escape }}</h6>
           {%- endif -%}
           {%- if block.settings.price != blank -%}
             <p class="hl-insta-card-price">{{ block.settings.price | escape }}</p>
@@ -64,6 +62,60 @@
       "id": "heading",
       "label": "Section Heading",
       "default": "Used in the Wild. Trusted in the Field."
+    },
+    {
+      "type": "header",
+      "content": "Font Sizes"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "min": 16,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading Size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Button Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
     }
   ],
   "blocks": [
@@ -76,6 +128,11 @@
           "id": "video_url",
           "label": "Video URL",
           "default": "https://framerusercontent.com/assets/MLWPbW1dUQawJLhhun3dBwpgJak.mp4"
+        },
+        {
+          "type": "video",
+          "id": "background_video",
+          "label": "Video (Shopify)"
         },
         {
           "type": "text",
