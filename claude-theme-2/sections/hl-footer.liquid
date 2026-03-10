@@ -1,0 +1,234 @@
+{{ 'hl-homepage.css' | asset_url | stylesheet_tag }}
+
+<footer class="hl-footer hl-section">
+
+  <!-- Footer Grid -->
+  <div class="hl-footer-grid">
+
+    <!-- Brand Column -->
+    <div class="hl-footer-col hl-footer-brand">
+      <a href="{{ routes.root_url }}" class="hl-footer-logo">
+        {{ section.settings.brand_name | default: 'HydroLid' | escape }}
+      </a>
+      {%- if section.settings.patent_text != blank -%}
+        <h5>{{ section.settings.patent_text | escape }}</h5>
+      {%- endif -%}
+      {%- if section.settings.brand_description != blank -%}
+        <p class="hl-body-14">{{ section.settings.brand_description | escape }}</p>
+      {%- endif -%}
+      <div class="hl-footer-social">
+        {%- if section.settings.facebook_url != blank -%}
+          <a href="{{ section.settings.facebook_url }}" aria-label="Facebook">
+            <svg width="24" height="24" fill="none" stroke="var(--hl-accent-2)" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+            Facebook
+          </a>
+        {%- endif -%}
+        {%- if section.settings.instagram_url != blank -%}
+          <a href="{{ section.settings.instagram_url }}" aria-label="Instagram">
+            <svg width="24" height="24" fill="none" stroke="var(--hl-accent-2)" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/>
+            </svg>
+            Instagram
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- Equipment Column -->
+    <div class="hl-footer-col">
+      <h4>{{ section.settings.col2_title | default: 'Equipment' | escape }}</h4>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'col2_link' -%}
+          <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+            {{ block.settings.label | escape }}
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <!-- Mission Column -->
+    <div class="hl-footer-col">
+      <h4>{{ section.settings.col3_title | default: 'The Mission' | escape }}</h4>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'col3_link' -%}
+          <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+            {{ block.settings.label | escape }}
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <!-- Information Column -->
+    <div class="hl-footer-col">
+      <h4>{{ section.settings.col4_title | default: 'Information' | escape }}</h4>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'col4_link' -%}
+          <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+            {{ block.settings.label | escape }}
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="hl-footer-bottom">
+    <p class="hl-body-14">
+      &copy; {{ 'now' | date: '%Y' }} {{ section.settings.brand_name | default: 'HydroLid' | escape }}. All rights reserved.
+    </p>
+    <div class="hl-payment-icons">
+      <!-- Visa -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="38" height="24"><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"/><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"/><path d="M28.3 10.1H28c-.4 1-.7 1.5-1 3h1.9c-.3-1.5-.3-2.2-.6-3zm2.9 5.9h-1.7c-.1 0-.1 0-.2-.1l-.2-.9-.1-.2h-2.4c-.1 0-.2 0-.2.2l-.3.9c0 .1-.1.1-.1.1h-2.1l.2-.5L27 8.7c0-.5.3-.7.8-.7h1.5c.1 0 .2 0 .2.2l1.4 6.5c.1.4.2.7.2 1.1.1.1.1.1.1.2zm-13.4-.3.4-1.8c.1 0 .2.1.2.1.7.3 1.4.5 2.1.4.2 0 .5-.1.7-.2.5-.2.5-.7.1-1.1-.2-.2-.5-.3-.8-.5-.4-.2-.8-.4-1.1-.7-1.2-1-.8-2.4-.1-3.1.6-.4.9-.8 1.7-.8 1.2 0 2.5 0 3.1.2h.1c-.1.6-.2 1.1-.4 1.7-.5-.2-1-.4-1.5-.4-.3 0-.6 0-.9.1-.2 0-.3.1-.4.2-.2.2-.2.5 0 .7l.5.4c.4.2.8.4 1.1.6.5.3 1 .8 1.1 1.4.2.9-.1 1.7-.9 2.3-.5.4-.7.6-1.4.6-1.4 0-2.5.1-3.4-.2-.1.2-.1.2-.2.1zm-3.5.3c.1-.7.1-.7.2-1 .5-2.2 1-4.5 1.4-6.7.1-.2.1-.3.3-.3H18c-.2 1.2-.4 2.1-.7 3.2-.3 1.5-.6 3-1 4.5 0 .2-.1.2-.3.2M5 8.2c0-.1.2-.2.3-.2h3.4c.5 0 .9.3 1 .8l.9 4.4c0 .1 0 .1.1.2 0-.1.1-.1.1-.1l2.1-5.1c-.1-.1 0-.2.1-.2h2.1c0 .1 0 .1-.1.2l-3.1 7.3c-.1.2-.1.3-.2.4-.1.1-.3 0-.5 0H9.7c-.1 0-.2 0-.2-.2L7.9 9.5c-.2-.2-.5-.5-.9-.6-.6-.3-1.7-.5-1.9-.5L5 8.2z" fill="#142688"/></svg>
+      <!-- Mastercard -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="38" height="24"><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"/><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"/><circle fill="#EB001B" cx="15" cy="12" r="7"/><circle fill="#F79E1B" cx="23" cy="12" r="7"/><path fill="#FF5F00" d="M22 12c0-2.4-1.2-4.5-3-5.7-1.8 1.3-3 3.4-3 5.7s1.2 4.5 3 5.7c1.8-1.2 3-3.3 3-5.7z"/></svg>
+      <!-- PayPal -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="38" height="24"><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"/><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"/><path fill="#003087" d="M23.9 8.3c.2-1 0-1.7-.6-2.3-.6-.7-1.7-1-3.1-1h-4.1c-.3 0-.5.2-.6.5L14 15.6c0 .2.1.4.3.4H17l.4-3.4 1.8-2.2 4.7-2.1z"/><path fill="#3086C8" d="m23.9 8.3-.2.2c-.5 2.8-2.2 3.8-4.6 3.8H18c-.3 0-.5.2-.6.5l-.6 3.9-.2 1c0 .2.1.4.3.4H19c.3 0 .5-.2.5-.4v-.1l.4-2.4v-.1c0-.2.3-.4.5-.4h.3c2.1 0 3.7-.8 4.1-3.2.2-1 .1-1.8-.4-2.4-.1-.5-.3-.7-.5-.8z"/><path fill="#012169" d="M23.3 8.1c-.1-.1-.2-.1-.3-.1-.1 0-.2 0-.3-.1-.3-.1-.7-.1-1.1-.1h-3c-.1 0-.2 0-.2.1-.2.1-.3.2-.3.4l-.7 4.4v.1c0-.3.3-.5.6-.5h1.3c2.5 0 4.1-1 4.6-3.8v-.2c-.1-.1-.3-.2-.5-.2h-.1z"/></svg>
+    </div>
+  </div>
+
+  <!-- Background decoration image -->
+  <img
+    class="hl-footer-bg-image"
+    src="https://framerusercontent.com/images/2LOxSmPGI08U3XPtHv9pcOIE.png"
+    alt=""
+    loading="lazy"
+    aria-hidden="true"
+  >
+
+</footer>
+
+{% schema %}
+{
+  "name": "HL Footer",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "HydroLid"
+    },
+    {
+      "type": "text",
+      "id": "patent_text",
+      "label": "Patent Text",
+      "default": "US PATENT NO. 11,866,230"
+    },
+    {
+      "type": "text",
+      "id": "brand_description",
+      "label": "Brand Description",
+      "default": "Repositioning the standard for extreme hydration. Born in the fire, built for the mission."
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "header",
+      "content": "Column Titles"
+    },
+    {
+      "type": "text",
+      "id": "col2_title",
+      "label": "Column 2 Title",
+      "default": "Equipment"
+    },
+    {
+      "type": "text",
+      "id": "col3_title",
+      "label": "Column 3 Title",
+      "default": "The Mission"
+    },
+    {
+      "type": "text",
+      "id": "col4_title",
+      "label": "Column 4 Title",
+      "default": "Information"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "col2_link",
+      "name": "Equipment Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Hydrolid System"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "URL"
+        }
+      ]
+    },
+    {
+      "type": "col3_link",
+      "name": "Mission Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Our Story"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "URL"
+        }
+      ]
+    },
+    {
+      "type": "col4_link",
+      "name": "Information Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Blog"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HL Footer",
+      "blocks": [
+        { "type": "col2_link", "settings": { "label": "Hydrolid System" } },
+        { "type": "col2_link", "settings": { "label": "Tactical Kits" } },
+        { "type": "col2_link", "settings": { "label": "Adventure Series" } },
+        { "type": "col2_link", "settings": { "label": "Replacement Parts" } },
+        { "type": "col3_link", "settings": { "label": "Our Story" } },
+        { "type": "col3_link", "settings": { "label": "Field Testing" } },
+        { "type": "col3_link", "settings": { "label": "Patent Info" } },
+        { "type": "col3_link", "settings": { "label": "Bulk/Gov Orders" } },
+        { "type": "col4_link", "settings": { "label": "Blog" } },
+        { "type": "col4_link", "settings": { "label": "Privacy Policy" } },
+        { "type": "col4_link", "settings": { "label": "Refund Policy" } },
+        { "type": "col4_link", "settings": { "label": "Shipping Policy" } },
+        { "type": "col4_link", "settings": { "label": "Terms of Service" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

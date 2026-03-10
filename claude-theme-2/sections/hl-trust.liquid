@@ -1,0 +1,161 @@
+{{ 'hl-homepage.css' | asset_url | stylesheet_tag }}
+
+<section class="hl-trust-section hl-section">
+  <div class="hl-container">
+
+    <!-- Section Header -->
+    <div class="hl-section-header-center" style="margin-bottom:30px;">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="hl-sub-heading" style="color:{{ section.settings.eyebrow_color }};">
+          {{ section.settings.eyebrow | escape }}
+        </p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2>{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+    </div>
+
+    <!-- Trust Badges Grid -->
+    <div class="hl-trust-badges">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'badge' -%}
+          <div class="hl-trust-badge" {{ block.shopify_attributes }}>
+            <div class="hl-trust-badge-icon">
+              {{ block.settings.icon_svg }}
+            </div>
+            {%- if block.settings.title != blank -%}
+              <h6>{{ block.settings.title | escape }}</h6>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <!-- Final CTA Bar -->
+    <div class="hl-final-cta">
+      <div class="hl-final-cta-text">
+        {%- if section.settings.cta_heading != blank -%}
+          <h3>{{ section.settings.cta_heading | escape }}</h3>
+        {%- endif -%}
+        {%- if section.settings.cta_description != blank -%}
+          <p class="hl-body-14">{{ section.settings.cta_description | escape }}</p>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.cta_btn_label != blank -%}
+        <a href="{{ section.settings.cta_btn_url }}" class="hl-btn hl-btn-accent">
+          {{ section.settings.cta_btn_label | escape }}
+        </a>
+      {%- endif -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "HL Trust Badges",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "The Setup"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow Color",
+      "default": "#1f5a3c"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Built to Perform. Backed by Us."
+    },
+    {
+      "type": "header",
+      "content": "Final CTA Bar"
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "CTA Heading",
+      "default": "If Something Isn't Right, We'll Make it Right"
+    },
+    {
+      "type": "text",
+      "id": "cta_description",
+      "label": "CTA Description",
+      "default": "Hydrolid was built in wildfire conditions where failure isn't an option."
+    },
+    {
+      "type": "text",
+      "id": "cta_btn_label",
+      "label": "CTA Button Label",
+      "default": "Upgrade Your Setup"
+    },
+    {
+      "type": "url",
+      "id": "cta_btn_url",
+      "label": "CTA Button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Trust Badge",
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Icon SVG",
+          "default": "<svg fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" viewBox=\"0 0 24 24\"><rect x=\"1\" y=\"3\" width=\"15\" height=\"13\" rx=\"2\"/><path d=\"M16 8h4l3 3v5h-7V8zM5.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM18.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5z\"/></svg>"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Badge Title",
+          "default": "Free Shipping"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HL Trust Badges",
+      "blocks": [
+        {
+          "type": "badge",
+          "settings": {
+            "icon_svg": "<svg fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" viewBox=\"0 0 24 24\"><rect x=\"1\" y=\"3\" width=\"15\" height=\"13\" rx=\"2\"/><path d=\"M16 8h4l3 3v5h-7V8zM5.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM18.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5z\"/></svg>",
+            "title": "Free Shipping"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon_svg": "<svg fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" viewBox=\"0 0 24 24\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/><path d=\"M9 12l2 2 4-4\"/></svg>",
+            "title": "Field-Tested Quality"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon_svg": "<svg fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" viewBox=\"0 0 24 24\"><rect x=\"3\" y=\"11\" width=\"18\" height=\"11\" rx=\"2\"/><path d=\"M7 11V7a5 5 0 0110 0v4\"/></svg>",
+            "title": "Secure Checkout"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon_svg": "<svg fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" viewBox=\"0 0 24 24\"><path d=\"M3 18v-6a9 9 0 0118 0v6\"/><path d=\"M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z\"/></svg>",
+            "title": "Customer Support"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

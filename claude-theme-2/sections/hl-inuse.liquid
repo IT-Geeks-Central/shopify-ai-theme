@@ -1,0 +1,135 @@
+{{ 'hl-homepage.css' | asset_url | stylesheet_tag }}
+
+<section class="hl-inuse-section hl-section">
+
+  <div class="hl-container-narrow hl-inuse-header">
+    <div class="hl-section-header-center">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="hl-sub-heading" style="color:{{ section.settings.eyebrow_color }};">
+          {{ section.settings.eyebrow | escape }}
+        </p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2>{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <!-- Scrollable Ticker -->
+  <div class="hl-insta-ticker">
+    {%- for block in section.blocks -%}
+      <div class="hl-insta-card" {{ block.shopify_attributes }}>
+        <div class="hl-insta-card-video">
+          <video
+            src="{{ block.settings.video_url }}"
+            autoplay
+            loop
+            muted
+            playsinline
+          ></video>
+        </div>
+        <div class="hl-insta-card-info">
+          {%- if block.settings.title != blank -%}
+            <h6>{{ block.settings.title | escape }}</h6>
+          {%- endif -%}
+          {%- if block.settings.price != blank -%}
+            <p class="hl-insta-card-price">{{ block.settings.price | escape }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "HL In Use",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "In Use"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow Color",
+      "default": "#1f5a3c"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Used in the Wild. Trusted in the Field."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video_card",
+      "name": "Video Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "video_url",
+          "label": "Video URL",
+          "default": "https://framerusercontent.com/assets/MLWPbW1dUQawJLhhun3dBwpgJak.mp4"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Product Title",
+          "default": "Base Kit Bundle | Insulated Water Bottle Included"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "$69.99"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HL In Use",
+      "blocks": [
+        {
+          "type": "video_card",
+          "settings": {
+            "video_url": "https://framerusercontent.com/assets/MLWPbW1dUQawJLhhun3dBwpgJak.mp4",
+            "title": "Base Kit Bundle | Insulated Water Bottle Included",
+            "price": "$69.99"
+          }
+        },
+        {
+          "type": "video_card",
+          "settings": {
+            "video_url": "https://framerusercontent.com/assets/MLWPbW1dUQawJLhhun3dBwpgJak.mp4",
+            "title": "Base Kit Bundle | Insulated Water Bottle Included",
+            "price": "$69.99"
+          }
+        },
+        {
+          "type": "video_card",
+          "settings": {
+            "video_url": "https://framerusercontent.com/assets/MLWPbW1dUQawJLhhun3dBwpgJak.mp4",
+            "title": "Base Kit Bundle | Insulated Water Bottle Included",
+            "price": "$69.99"
+          }
+        },
+        {
+          "type": "video_card",
+          "settings": {
+            "video_url": "https://framerusercontent.com/assets/MLWPbW1dUQawJLhhun3dBwpgJak.mp4",
+            "title": "Field & Fire Kit Bundle",
+            "price": "$149.99"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
