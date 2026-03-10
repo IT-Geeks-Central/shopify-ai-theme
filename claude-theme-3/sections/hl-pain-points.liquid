@@ -1,0 +1,118 @@
+{{ 'hydrolid-homepage.css' | asset_url | stylesheet_tag }}
+
+<div class="hl-section">
+  <section class="hl-pain-section">
+    <div class="hl-container">
+
+      <div class="hl-section-header-center" style="margin-bottom:30px;">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="hl-sub-heading" style="color: {{ section.settings.eyebrow_color }};">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2>{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+
+      <div class="hl-pain-points">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'pain_point' -%}
+            {%- unless forloop.first -%}
+              <div class="hl-pain-divider"></div>
+            {%- endunless -%}
+            <div class="hl-pain-point" {{ block.shopify_attributes }}>
+              <div class="hl-pain-point-icon">
+                {%- case forloop.index -%}
+                  {%- when 1 -%}
+                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true" width="40" height="40"><path d="M12 3c-4.97 0-9 2.69-9 6v6c0 3.31 4.03 6 9 6s9-2.69 9-6V9c0-3.31-4.03-6-9-6z"/><path d="M3 9c0 3.31 4.03 6 9 6s9-2.69 9-6"/></svg>
+                  {%- when 2 -%}
+                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true" width="40" height="40"><circle cx="12" cy="12" r="10"/><circle cx="7" cy="10" r="2"/><circle cx="17" cy="10" r="2"/><circle cx="12" cy="17" r="2"/></svg>
+                  {%- when 3 -%}
+                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true" width="40" height="40"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                {%- endcase -%}
+              </div>
+              <h4>{{ block.settings.title }}</h4>
+              <p class="hl-body">{{ block.settings.description }}</p>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "HL - Pain Points",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow Color",
+      "default": "#1f5a3c"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Label",
+      "default": "And in extreme heat? They warm up fast."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Hydration Bladders Add Bulk. Add Hassle. Add Complexity."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pain_point",
+      "name": "Pain Point",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Pain Point Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Description of this pain point."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "HL - Pain Points",
+      "blocks": [
+        {
+          "type": "pain_point",
+          "settings": {
+            "title": "Hard to clean",
+            "description": "Standard bladders sit against your body, turning water into tea in minutes."
+          }
+        },
+        {
+          "type": "pain_point",
+          "settings": {
+            "title": "Heavy when full",
+            "description": "Fumbling with zippers and bags slows you down when seconds matter."
+          }
+        },
+        {
+          "type": "pain_point",
+          "settings": {
+            "title": "Slows access",
+            "description": "Poor hydration leads to fatigue. Hydrolid keeps you at peak operational capacity."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

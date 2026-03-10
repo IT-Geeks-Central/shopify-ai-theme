@@ -1,0 +1,152 @@
+{{ 'hydrolid-homepage.css' | asset_url | stylesheet_tag }}
+{{ 'hydrolid-homepage.js' | asset_url | script_tag }}
+
+<div class="hl-section">
+  <section class="hl-faq-section">
+    <div class="hl-container">
+      <div class="hl-faq-layout">
+
+        <div class="hl-faq-sidebar">
+          <div class="hl-section-header-left">
+            {%- if section.settings.eyebrow != blank -%}
+              <p class="hl-sub-heading" style="color: {{ section.settings.eyebrow_color }};">{{ section.settings.eyebrow }}</p>
+            {%- endif -%}
+            {%- if section.settings.heading != blank -%}
+              <h2>{{ section.settings.heading }}</h2>
+            {%- endif -%}
+          </div>
+          {%- if section.settings.description != blank -%}
+            <p class="hl-body">{{ section.settings.description }}</p>
+          {%- endif -%}
+          {%- if section.settings.contact_label != blank -%}
+            <a href="{{ section.settings.contact_link }}" class="hl-btn hl-btn-accent" style="align-self:flex-start;">{{ section.settings.contact_label }}</a>
+          {%- endif -%}
+        </div>
+
+        <div class="hl-faq-list">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'faq_item' -%}
+              <div class="hl-faq-item" {{ block.shopify_attributes }}>
+                <button class="hl-faq-question">{{ block.settings.question }}</button>
+                <div class="hl-faq-answer">
+                  <div class="hl-faq-answer-inner">{{ block.settings.answer }}</div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "HL - FAQ",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Sidebar"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow Color",
+      "default": "#1f5a3c"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Label",
+      "default": "Common Questions"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Find Your Answers Fast"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Everything you need to know about compatibility, durability, and field use."
+    },
+    {
+      "type": "text",
+      "id": "contact_label",
+      "label": "Contact Button Label",
+      "default": "Contact support"
+    },
+    {
+      "type": "url",
+      "id": "contact_link",
+      "label": "Contact Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Frequently asked question?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Answer to the frequently asked question."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HL - FAQ",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is HydroLid, and what makes it unique?",
+            "answer": "HydroLid offers innovative hydration solutions designed for extreme environments and outdoor recreation. Founded by a wildland firefighter, our products ensure temperature-stable hydration without the need to stop and access your insulated bottle. From fire & fieldwork to strenuous adventuring, our hands-free hydration kits enhance your experience."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are HydroLid products compatible with other insulated bottles?",
+            "answer": "Yes, HydroLid works with wide-mouth Hydro Flask, ThermoFlask and CamelBak insulated bottles, offering a versatile solution to fit various popular bottle brands."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How can HydroLid products be adapted to various hydration capacities and uses?",
+            "answer": "HydroLid offers a range of kits that can be customized for different hydration needs, from the HydroLid Base Kit for everyday use to the HydroLid Field & Fire Kit for simultaneous drawing from two bottles. Our products are designed for both professional and recreational use."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How does HydroLid support hydration needs during firefighting operations?",
+            "answer": "HydroLid provides firefighters with quick and hands-free hydration access, allowing them to stay focused on the task without having to stop to access their insulated bottles. With temperature-stable hydration, products like the HydroLid Base Kit and HydroLid Field and Fire Kit ensure that firefighters remain refreshed."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is HydroLid compatible with the gear typically used by fire departments?",
+            "answer": "Yes, HydroLid is designed with versatility in mind and can be used with wide-mouth bottles such as Hydro Flask, ThermoFlask and CamelBak insulated bottles. The lightweight and functional design allows it to integrate seamlessly with standard firefighting equipment."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

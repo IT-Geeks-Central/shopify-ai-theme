@@ -1,0 +1,121 @@
+{{ 'hydrolid-homepage.css' | asset_url | stylesheet_tag }}
+
+<div class="hl-section">
+  <section class="hl-collections-section">
+    <div class="hl-collections">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'collection_card' -%}
+          <div class="hl-collection-card" {{ block.shopify_attributes }}>
+
+            <div class="hl-collection-card-bg">
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 900 }}"
+                     alt="{{ block.settings.image.alt | default: block.settings.title | escape }}"
+                     loading="lazy"
+                     width="900"
+                     height="700">
+              {%- else -%}
+                {%- if forloop.index == 1 -%}
+                  <img src="https://images.unsplash.com/photo-1628260410023-b5f0a26f753c?w=900&h=700&fit=crop"
+                       alt="{{ block.settings.title | escape }}"
+                       loading="lazy"
+                       width="900"
+                       height="700">
+                {%- else -%}
+                  <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=900&h=700&fit=crop"
+                       alt="{{ block.settings.title | escape }}"
+                       loading="lazy"
+                       width="900"
+                       height="700">
+                {%- endif -%}
+              {%- endif -%}
+            </div>
+
+            <div class="hl-collection-card-overlay"></div>
+
+            <div class="hl-collection-card-content">
+              {%- if block.settings.title != blank -%}
+                <h3>{{ block.settings.title }}</h3>
+              {%- endif -%}
+              {%- if block.settings.description != blank -%}
+                <p class="hl-body">{{ block.settings.description }}</p>
+              {%- endif -%}
+              {%- if block.settings.btn_label != blank -%}
+                <a href="{{ block.settings.btn_link }}" class="hl-btn hl-btn-white">{{ block.settings.btn_label }}</a>
+              {%- endif -%}
+            </div>
+
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "HL - Shop by Category",
+  "tag": "div",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Collection Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Collection Name"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Collection description."
+        },
+        {
+          "type": "text",
+          "id": "btn_label",
+          "label": "Button Label",
+          "default": "Shop now"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 2,
+  "presets": [
+    {
+      "name": "HL - Shop by Category",
+      "blocks": [
+        {
+          "type": "collection_card",
+          "settings": {
+            "title": "For Wildland Firefighters",
+            "description": "Operational hydration that won't fail when the heat hits triple digits. Built for the fire line.",
+            "btn_label": "Shop now"
+          }
+        },
+        {
+          "type": "collection_card",
+          "settings": {
+            "title": "For Hikers & Backpackers",
+            "description": "Ditch the heavy bladder. Upgrade your trail experience with ice-cold water access.",
+            "btn_label": "Shop now"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

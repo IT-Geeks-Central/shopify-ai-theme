@@ -8,283 +8,414 @@
  * ------------------------------------------------------------
  */{
   "sections": {
-    "hero_jVaWmY": {
-      "type": "hero",
-      "blocks": {
-        "text_YLPk4p": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<p>Browse our latest products</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground-heading)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "button_H9gpTf": {
-          "type": "button",
-          "name": "t:names.button",
-          "settings": {
-            "label": "Shop all",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button-secondary",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
-      ],
-      "name": "t:names.hero",
+    "hl_hero_1": {
+      "type": "hl-hero",
+      "name": "Hero Banner",
       "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-6",
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
-        "overlay_style": "solid",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
+        "eyebrow_color": "#ffffff",
+        "eyebrow": "Mission Ready",
+        "heading": "Ditch the Bladder. Upgrade Your Hydration.",
+        "description": "A smarter, lighter, cleaner hydration system built for hikers, backpackers, and wildland firefighters.",
+        "btn1_label": "Upgrade Your Setup",
+        "btn2_label": "See How It Works",
+        "card_title": "Field & Fire Kit Bundle",
+        "card_price": "$139.00"
       }
     },
-    "product_list_fa6P9H": {
-      "type": "product-list",
+    "hl_new_arrivals_1": {
+      "type": "hl-new-arrivals",
+      "name": "New Arrivals",
+      "settings": {
+        "eyebrow_color": "#1f5a3c",
+        "eyebrow": "New Arrivals",
+        "heading": "Built for the Field.",
+        "btn_label": "View All",
+        "products_count": 4
+      }
+    },
+    "hl_system_1": {
+      "type": "hl-system",
+      "name": "The System",
       "blocks": {
-        "static-header": {
-          "type": "_product-list-content",
-          "name": "t:names.header",
-          "static": true,
+        "feature_1": {
+          "type": "feature",
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_list_text_YFtzcL": {
-              "type": "_product-list-text",
-              "name": "t:names.collection_title",
-              "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h4",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_list_button_MWeP9V": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "View all",
-                "open_in_new_tab": false,
-                "style_class": "link",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_list_text_YFtzcL",
-            "product_list_button_MWeP9V"
-          ]
+            "feature_text": "Modular hose system"
+          }
         },
-        "static-product-card": {
-          "type": "_product-card",
-          "name": "t:names.product_card",
-          "static": true,
+        "feature_2": {
+          "type": "feature",
           "settings": {
-            "product_card_gap": 4,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_card_gallery_677WP3": {
-              "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
-              "settings": {
-                "image_ratio": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_title_YXxMTj": {
-              "type": "product-title",
-              "name": "t:names.product_title",
-              "settings": {
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "price_JQzVV4": {
-              "type": "price",
-              "name": "t:names.product_price",
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "color": "var(--color-foreground)",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_card_gallery_677WP3",
-            "product_title_YXxMTj",
-            "price_JQzVV4"
-          ]
+            "feature_text": "Quick-access drinking without removing your pack"
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Compatible with insulated bottles"
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Built for rugged use"
+          }
         }
       },
-      "name": "Featured collection",
+      "block_order": ["feature_1", "feature_2", "feature_3", "feature_4"],
       "settings": {
-        "collection": "all",
-        "layout_type": "grid",
-        "carousel_on_mobile": false,
-        "max_products": 8,
-        "columns": 4,
-        "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 8,
-        "rows_gap": 24,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
-        "gap": 28,
-        "color_scheme": "scheme-1",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "eyebrow_color": "#1f5a3c",
+        "eyebrow": "The System",
+        "heading": "Not a Lid. A Complete Upgrade System.",
+        "quote": "HydroLid transforms your bottle into a hands-free hydration system.",
+        "btn_label": "See the System"
+      }
+    },
+    "hl_pain_points_1": {
+      "type": "hl-pain-points",
+      "name": "Pain Points",
+      "blocks": {
+        "pain_1": {
+          "type": "pain_point",
+          "settings": {
+            "title": "Hard to clean",
+            "description": "Standard bladders sit against your body, turning water into tea in minutes."
+          }
+        },
+        "pain_2": {
+          "type": "pain_point",
+          "settings": {
+            "title": "Heavy when full",
+            "description": "Fumbling with zippers and bags slows you down when seconds matter."
+          }
+        },
+        "pain_3": {
+          "type": "pain_point",
+          "settings": {
+            "title": "Slows access",
+            "description": "Poor hydration leads to fatigue. Hydrolid keeps you at peak operational capacity."
+          }
+        }
+      },
+      "block_order": ["pain_1", "pain_2", "pain_3"],
+      "settings": {
+        "eyebrow_color": "#1f5a3c",
+        "eyebrow": "And in extreme heat? They warm up fast.",
+        "heading": "Hydration Bladders Add Bulk. Add Hassle. Add Complexity."
+      }
+    },
+    "hl_collections_1": {
+      "type": "hl-collections",
+      "name": "Shop by Category",
+      "blocks": {
+        "col_1": {
+          "type": "collection_card",
+          "settings": {
+            "title": "For Wildland Firefighters",
+            "description": "Operational hydration that won't fail when the heat hits triple digits. Built for the fire line.",
+            "btn_label": "Shop now"
+          }
+        },
+        "col_2": {
+          "type": "collection_card",
+          "settings": {
+            "title": "For Hikers & Backpackers",
+            "description": "Ditch the heavy bladder. Upgrade your trail experience with ice-cold water access.",
+            "btn_label": "Shop now"
+          }
+        }
+      },
+      "block_order": ["col_1", "col_2"],
+      "settings": {}
+    },
+    "hl_testimonials_1": {
+      "type": "hl-testimonials",
+      "name": "Testimonials",
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "review_text": "\"We've had issues with bladders popping in high heat. Hydrolid changed that. My Nalgene is now my hydration pack, and it doesn't fail.\"",
+            "author_name": "Sgt. Mark Harrison",
+            "author_role": "US Marine Corps"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "review_text": "\"The Hydrolid is standard gear for me now. It's built for the same conditions we are—tough, reliable, and it actually keeps water cool.\"",
+            "author_name": "Sarah Miller",
+            "author_role": "Wildland Firefighter"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "review_text": "\"It's the only hydration system that doesn't feel like a cheap plastic toy. The military-grade construction is evident from the first use.\"",
+            "author_name": "David Vance",
+            "author_role": "Professional Climber"
+          }
+        }
+      },
+      "block_order": ["review_1", "review_2", "review_3"],
+      "settings": {
+        "eyebrow_color": "#1f5a3c",
+        "eyebrow": "The System",
+        "heading": "Tested Where Failure Isn't an Option.",
+        "rating_text": "4.9/5 Rating"
+      }
+    },
+    "hl_origin_1": {
+      "type": "hl-origin",
+      "name": "Our Origin",
+      "blocks": {
+        "timeline_1": {
+          "type": "timeline_item",
+          "settings": {
+            "label": "The Spark",
+            "title": "100° Wildfire Conditions",
+            "description": "California front lines, fighting heat exhaustion."
+          }
+        },
+        "timeline_2": {
+          "type": "timeline_item",
+          "settings": {
+            "label": "The Failure",
+            "title": "Bladder Water Overheats",
+            "description": "Drinking warm plastic water when ice-cold is needed."
+          }
+        },
+        "timeline_3": {
+          "type": "timeline_item",
+          "settings": {
+            "label": "The Solution",
+            "title": "Insulated Bottle Workaround",
+            "description": "Combining trusted thermal bottles with hydration tubes."
+          }
+        },
+        "timeline_4": {
+          "type": "timeline_item",
+          "settings": {
+            "label": "The Build",
+            "title": "Field Tested Prototype",
+            "description": "Built by hand, tested in operational environments."
+          }
+        },
+        "timeline_5": {
+          "type": "timeline_item",
+          "settings": {
+            "label": "The Result",
+            "title": "Patent Secured",
+            "description": "The ultimate hydration system upgrade is born."
+          }
+        }
+      },
+      "block_order": ["timeline_1", "timeline_2", "timeline_3", "timeline_4", "timeline_5"],
+      "settings": {
+        "eyebrow": "Our Origin",
+        "heading": "Born in Fire. Patented for Performance."
+      }
+    },
+    "hl_build_setup_1": {
+      "type": "hl-build-setup",
+      "name": "Build Your Setup",
+      "settings": {
+        "eyebrow_color": "#1f5a3c",
+        "eyebrow": "The Gear",
+        "heading": "Build Your Hydration Setup",
+        "btn_label": "View All",
+        "products_count": 4
+      }
+    },
+    "hl_steps_1": {
+      "type": "hl-steps",
+      "name": "Three Steps",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Attach",
+            "description": "Install HydroLid onto your compatible bottle."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "Route",
+            "description": "Run the hose through your pack strap."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Go",
+            "description": "Hydrate without stopping. Without unpacking."
+          }
+        }
+      },
+      "block_order": ["step_1", "step_2", "step_3"],
+      "settings": {
+        "eyebrow_color": "#1f5a3c",
+        "eyebrow": "The Setup",
+        "heading": "Three Steps To Smarter Hydration."
+      }
+    },
+    "hl_video_cta_1": {
+      "type": "hl-video-cta",
+      "name": "Video CTA",
+      "settings": {
+        "eyebrow": "Effortless Hydration",
+        "heading": "Install in seconds",
+        "description": "Convert your insulated water bottle into a hands-free hydration system. Simply connect a drinking tube to a wide mouth water bottle. The perfect element to your Hydro Flask accessories. HydroLid works with insulated bottles from CamelBak, ThermoFlask and more to enjoy ice cold water on the go.",
+        "btn_label": "Shop Kit"
+      }
+    },
+    "hl_faq_1": {
+      "type": "hl-faq",
+      "name": "FAQ",
+      "blocks": {
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is HydroLid, and what makes it unique?",
+            "answer": "HydroLid offers innovative hydration solutions designed for extreme environments and outdoor recreation. Founded by a wildland firefighter, our products ensure temperature-stable hydration without the need to stop and access your insulated bottle. From fire & fieldwork to strenuous adventuring, our hands-free hydration kits enhance your experience."
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are HydroLid products compatible with other insulated bottles?",
+            "answer": "Yes, HydroLid works with wide-mouth Hydro Flask, ThermoFlask and CamelBak insulated bottles, offering a versatile solution to fit various popular bottle brands."
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How can HydroLid products be adapted to various hydration capacities and uses?",
+            "answer": "HydroLid offers a range of kits that can be customized for different hydration needs, from the HydroLid Base Kit for everyday use to the HydroLid Field & Fire Kit for simultaneous drawing from two bottles. Our products are designed for both professional and recreational use."
+          }
+        },
+        "faq_4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How does HydroLid support hydration needs during firefighting operations?",
+            "answer": "HydroLid provides firefighters with quick and hands-free hydration access, allowing them to stay focused on the task without having to stop to access their insulated bottles. With temperature-stable hydration, products like the HydroLid Base Kit and HydroLid Field and Fire Kit ensure that firefighters remain refreshed, enhancing stamina and efficiency during firefighting operations."
+          }
+        },
+        "faq_5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is HydroLid compatible with the gear typically used by fire departments?",
+            "answer": "Yes, HydroLid is designed with versatility in mind and can be used with wide-mouth bottles such as Hydro Flask, ThermoFlask and CamelBak insulated bottles. The lightweight and functional design allows it to integrate seamlessly with standard firefighting equipment."
+          }
+        }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5"],
+      "settings": {
+        "eyebrow_color": "#1f5a3c",
+        "eyebrow": "Common Questions",
+        "heading": "Find Your Answers Fast",
+        "description": "Everything you need to know about compatibility, durability, and field use.",
+        "contact_label": "Contact support"
+      }
+    },
+    "hl_blog_1": {
+      "type": "hl-blog",
+      "name": "Blog Posts",
+      "settings": {
+        "eyebrow_color": "#1f5a3c",
+        "eyebrow": "News",
+        "heading": "Learn More About Smarter Hydration.",
+        "btn_label": "View All",
+        "posts_count": 3
+      }
+    },
+    "hl_trust_1": {
+      "type": "hl-trust",
+      "name": "Trust & Guarantee",
+      "blocks": {
+        "badge_1": {
+          "type": "trust_badge",
+          "settings": { "title": "Free Shipping" }
+        },
+        "badge_2": {
+          "type": "trust_badge",
+          "settings": { "title": "Field-Tested Quality" }
+        },
+        "badge_3": {
+          "type": "trust_badge",
+          "settings": { "title": "Secure Checkout" }
+        },
+        "badge_4": {
+          "type": "trust_badge",
+          "settings": { "title": "Customer Support" }
+        }
+      },
+      "block_order": ["badge_1", "badge_2", "badge_3", "badge_4"],
+      "settings": {
+        "eyebrow_color": "#1f5a3c",
+        "eyebrow": "The Setup",
+        "heading": "Built to Perform. Backed by Us.",
+        "cta_title": "If Something Isn't Right, We'll Make it Right",
+        "cta_description": "Hydrolid was built in wildfire conditions where failure isn't an option.",
+        "cta_btn_label": "Upgrade Your Setup"
+      }
+    },
+    "hl_inuse_1": {
+      "type": "hl-inuse",
+      "name": "In Use",
+      "blocks": {
+        "video_1": {
+          "type": "video_card",
+          "settings": {
+            "title": "Base Kit Bundle | Insulated Water Bottle Included",
+            "price": "$69.99"
+          }
+        },
+        "video_2": {
+          "type": "video_card",
+          "settings": {
+            "title": "Base Kit Bundle | Insulated Water Bottle Included",
+            "price": "$69.99"
+          }
+        },
+        "video_3": {
+          "type": "video_card",
+          "settings": {
+            "title": "Base Kit Bundle | Insulated Water Bottle Included",
+            "price": "$69.99"
+          }
+        },
+        "video_4": {
+          "type": "video_card",
+          "settings": {
+            "title": "Field & Fire Kit Bundle",
+            "price": "$149.99"
+          }
+        }
+      },
+      "block_order": ["video_1", "video_2", "video_3", "video_4"],
+      "settings": {
+        "eyebrow_color": "#1f5a3c",
+        "eyebrow": "In Use",
+        "heading": "Used in the Wild. Trusted in the Field."
       }
     }
   },
   "order": [
-    "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "hl_hero_1",
+    "hl_new_arrivals_1",
+    "hl_system_1",
+    "hl_pain_points_1",
+    "hl_collections_1",
+    "hl_testimonials_1",
+    "hl_origin_1",
+    "hl_build_setup_1",
+    "hl_steps_1",
+    "hl_video_cta_1",
+    "hl_faq_1",
+    "hl_blog_1",
+    "hl_trust_1",
+    "hl_inuse_1"
   ]
 }
