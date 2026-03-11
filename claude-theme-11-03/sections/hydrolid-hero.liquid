@@ -15,7 +15,7 @@
 
   <div
     class="hl-hero__overlay"
-    style="background: linear-gradient(to right, {{ section.settings.overlay_color }}{{ section.settings.overlay_opacity | times: 2.55 | round | append: '' }} 0%, {{ section.settings.overlay_color }}50 55%, transparent 100%);"
+    style="background: linear-gradient(to right, rgba({{ section.settings.overlay_color.red }}, {{ section.settings.overlay_color.green }}, {{ section.settings.overlay_color.blue }}, {{ section.settings.overlay_opacity | divided_by: 100.0 }}) 0%, rgba({{ section.settings.overlay_color.red }}, {{ section.settings.overlay_color.green }}, {{ section.settings.overlay_color.blue }}, 0.3) 55%, transparent 100%);"
   ></div>
 
   <div class="hl-hero__content">
