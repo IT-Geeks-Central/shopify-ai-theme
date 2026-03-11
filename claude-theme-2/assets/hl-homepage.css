@@ -257,13 +257,15 @@
 }
 
 .hl-hero-product-card {
-  position: absolute;
-  right: 21px;
-  bottom: 91px;
-  z-index: 3;
-  background: var(--hl-white);
-  padding: 10px;
-  width: 300px;
+    position: absolute;
+    right: 21px;
+    bottom: 91px;
+    z-index: 3;
+    background: var(--hl-white);
+    padding: 10px;
+    width: 300px;
+    display: flex;
+    gap: 15px;
 }
 
 .hl-hero-product-card .hl-card-img {
