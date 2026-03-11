@@ -1,0 +1,253 @@
+{% comment %} Section: hydrolid-hero {% endcomment %}
+{{ 'hydrolid-custom.css' | asset_url | stylesheet_tag }}
+
+<section
+  id="shopify-section-{{ section.id }}"
+  class="hl-hero"
+  style="height: {{ section.settings.section_height }}px;"
+>
+
+  {%- if section.settings.bg_image != blank -%}
+    <div class="hl-hero__bg">
+      {{- section.settings.bg_image | image_url: width: 1920 | image_tag: class: 'hl-hero__bg-img', loading: 'eager', alt: section.settings.bg_image.alt | escape -}}
+    </div>
+  {%- endif -%}
+
+  <div
+    class="hl-hero__overlay"
+    style="background: linear-gradient(to right, {{ section.settings.overlay_color }}{{ section.settings.overlay_opacity | times: 2.55 | round | append: '' }} 0%, {{ section.settings.overlay_color }}50 55%, transparent 100%);"
+  ></div>
+
+  <div class="hl-hero__content">
+    {%- if section.settings.subheading != blank -%}
+      <p
+        class="hl-sub-heading"
+        style="
+          color: {{ section.settings.subheading_color }};
+          font-size: {{ section.settings.subheading_size }}px;
+        "
+      >{{ section.settings.subheading }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank -%}
+      <h1
+        style="
+          color: {{ section.settings.heading_color }};
+          font-size: {{ section.settings.heading_size }}px;
+          font-weight: {{ section.settings.heading_weight }};
+          line-height: 1.15;
+          letter-spacing: -1px;
+          text-transform: capitalize;
+        "
+      >{{ section.settings.heading }}</h1>
+    {%- endif -%}
+
+    {%- if section.settings.description != blank -%}
+      <p
+        class="hl-body"
+        style="color: {{ section.settings.description_color }}; max-width: 500px;"
+      >{{ section.settings.description }}</p>
+    {%- endif -%}
+
+    <div class="hl-hero__buttons">
+      {%- if section.settings.btn1_label != blank -%}
+        <a href="{{ section.settings.btn1_url }}" class="hl-btn hl-btn--outline-white">
+          {{- section.settings.btn1_label -}}
+        </a>
+      {%- endif -%}
+
+      {%- if section.settings.btn2_label != blank -%}
+        <a href="{{ section.settings.btn2_url }}" class="hl-btn hl-btn--accent">
+          {{- section.settings.btn2_label -}}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if section.settings.product != blank -%}
+    {%- assign featured_product = section.settings.product -%}
+    <div class="hl-hero__product-card">
+      {%- if featured_product.featured_image != blank -%}
+        <div class="hl-hero__card-img">
+          {{- featured_product.featured_image | image_url: width: 400 | image_tag: class: 'hl-hero__card-img-tag', alt: featured_product.featured_image.alt | escape -}}
+        </div>
+      {%- endif -%}
+
+      {%- if featured_product.title != blank -%}
+        <h6 class="hl-hero__card-title">{{ featured_product.title }}</h6>
+      {%- endif -%}
+
+      <p class="hl-hero__card-price">{{ featured_product.price | money }}</p>
+    </div>
+  {%- endif -%}
+
+</section>
+
+{% schema %}
+{
+  "name": "HydroLid Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Tint Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "Section Height",
+      "min": 400,
+      "max": 900,
+      "step": 20,
+      "unit": "px",
+      "default": 620
+    },
+    {
+      "type": "header",
+      "content": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading Text",
+      "default": "Mission Ready"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading Font Size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading Text",
+      "default": "Ditch the Bladder. Upgrade Your Hydration."
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 52
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description Text",
+      "default": "A smarter, lighter, cleaner hydration system built for hikers, backpackers, and wildland firefighters."
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "header",
+      "content": "Button 1 (Outline)"
+    },
+    {
+      "type": "text",
+      "id": "btn1_label",
+      "label": "Button 1 Label",
+      "default": "Upgrade Your Setup"
+    },
+    {
+      "type": "url",
+      "id": "btn1_url",
+      "label": "Button 1 URL"
+    },
+    {
+      "type": "header",
+      "content": "Button 2 (Filled)"
+    },
+    {
+      "type": "text",
+      "id": "btn2_label",
+      "label": "Button 2 Label",
+      "default": "See How It Works"
+    },
+    {
+      "type": "url",
+      "id": "btn2_url",
+      "label": "Button 2 URL"
+    },
+    {
+      "type": "header",
+      "content": "Floating Product Card"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Featured Product"
+    }
+  ],
+  "presets": [
+    {
+      "name": "HydroLid Hero"
+    }
+  ]
+}
+{% endschema %}

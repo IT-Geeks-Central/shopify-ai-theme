@@ -1,0 +1,218 @@
+{% comment %} Section: hydrolid-pain-points {% endcomment %}
+{{ 'hydrolid-custom.css' | asset_url | stylesheet_tag }}
+
+<section id="shopify-section-{{ section.id }}" class="hl-pain-section" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; background: {{ section.settings.bg_color }};">
+
+  <div class="hl-container">
+
+    {%- if section.settings.subheading != blank or section.settings.heading != blank -%}
+      <div class="hl-section-header-center" style="margin-bottom: 32px;">
+        {%- if section.settings.subheading != blank -%}
+          <p class="hl-sub-heading" style="font-size: {{ section.settings.subheading_size }}px;">{{ section.settings.subheading }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 style="font-size: {{ section.settings.heading_size }}px; font-weight: {{ section.settings.heading_weight }}; letter-spacing: -0.8px; max-width: 700px;">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="hl-pain-points">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'pain_point' -%}
+          <div class="hl-pain-point" {{ block.shopify_attributes }}>
+            {%- if block.settings.icon_svg != blank -%}
+              <div class="hl-pain-point-icon" style="color: {{ block.settings.icon_color }};">
+                {{ block.settings.icon_svg }}
+              </div>
+            {%- endif -%}
+            {%- if block.settings.title != blank -%}
+              <h4 style="font-size: {{ block.settings.title_size }}px;">{{ block.settings.title }}</h4>
+            {%- endif -%}
+            {%- if block.settings.description != blank -%}
+              <p class="hl-body" style="color: {{ block.settings.description_color }}; font-size: {{ block.settings.description_size }}px;">{{ block.settings.description }}</p>
+            {%- endif -%}
+          </div>
+
+          {%- unless forloop.last -%}
+            <div class="hl-pain-divider"></div>
+          {%- endunless -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "HydroLid Pain Points",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "And in extreme heat? They warm up fast."
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading Size",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Hydration Bladders Add Bulk. Add Hassle. Add Complexity."
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "header",
+      "content": "Section Style"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f2f6f4"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 120,
+      "step": 8,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 8,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pain_point",
+      "name": "Pain Point",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "icon_svg",
+          "label": "Icon SVG Code",
+          "default": "<svg fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" viewBox=\"0 0 24 24\" width=\"40\" height=\"40\"><path d=\"M12 3c-4.97 0-9 2.69-9 6v6c0 3.31 4.03 6 9 6s9-2.69 9-6V9c0-3.31-4.03-6-9-6z\"/><path d=\"M3 9c0 3.31 4.03 6 9 6s9-2.69 9-6\"/></svg>"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Icon Color",
+          "default": "#10497e"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Hard to clean"
+        },
+        {
+          "type": "range",
+          "id": "title_size",
+          "label": "Title Font Size",
+          "min": 14,
+          "max": 28,
+          "step": 1,
+          "unit": "px",
+          "default": 18
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Standard bladders sit against your body, turning water into tea in minutes."
+        },
+        {
+          "type": "range",
+          "id": "description_size",
+          "label": "Description Font Size",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 15
+        },
+        {
+          "type": "color",
+          "id": "description_color",
+          "label": "Description Color",
+          "default": "#555555"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HydroLid Pain Points",
+      "blocks": [
+        {
+          "type": "pain_point",
+          "settings": {
+            "title": "Hard to clean",
+            "description": "Standard bladders sit against your body, turning water into tea in minutes."
+          }
+        },
+        {
+          "type": "pain_point",
+          "settings": {
+            "title": "Heavy when full",
+            "description": "Fumbling with zippers and bags slows you down when seconds matter."
+          }
+        },
+        {
+          "type": "pain_point",
+          "settings": {
+            "title": "Slows access",
+            "description": "Poor hydration leads to fatigue. Hydrolid keeps you at peak operational capacity."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

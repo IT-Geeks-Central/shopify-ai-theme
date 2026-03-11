@@ -1,0 +1,187 @@
+{% comment %} Section: hydrolid-video-cta {% endcomment %}
+{{ 'hydrolid-custom.css' | asset_url | stylesheet_tag }}
+
+<section id="shopify-section-{{ section.id }}" class="hl-video-cta" style="background: {{ section.settings.bg_color }};">
+
+  {%- if section.settings.video != blank -%}
+    {%- assign vid = section.settings.video -%}
+    <div class="hl-video-cta__video-wrap" style="height: {{ section.settings.video_height }}px;">
+      <video
+        autoplay
+        loop
+        muted
+        playsinline
+        style="width: 100%; height: 100%; object-fit: cover; display: block;"
+      >
+        {%- for source in vid.sources -%}
+          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+        {%- endfor -%}
+      </video>
+    </div>
+  {%- endif -%}
+
+  <div class="hl-video-cta__overlay" style="height: {{ section.settings.video_height }}px; background: linear-gradient(to right, {{ section.settings.overlay_color }}e0 0%, {{ section.settings.overlay_color }}6a 55%, transparent 100%);"></div>
+
+  <div class="hl-video-cta__content" style="height: {{ section.settings.video_height }}px;">
+    <div class="hl-video-cta__inner">
+      <div class="hl-video-cta__text">
+
+        {%- if section.settings.subheading != blank -%}
+          <p class="hl-sub-heading" style="color: {{ section.settings.subheading_color }}; font-size: {{ section.settings.subheading_size }}px;">{{ section.settings.subheading }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.heading != blank -%}
+          <h2 style="color: {{ section.settings.heading_color }}; font-size: {{ section.settings.heading_size }}px; font-weight: {{ section.settings.heading_weight }}; letter-spacing: -0.8px;">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.description != blank -%}
+          <p class="hl-body" style="color: {{ section.settings.description_color }};">{{ section.settings.description }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.btn_label != blank -%}
+          <div>
+            <a href="{{ section.settings.btn_url }}" class="hl-btn hl-btn--white">{{ section.settings.btn_label }}</a>
+          </div>
+        {%- endif -%}
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "HydroLid Video CTA",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Video"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Background Video"
+    },
+    {
+      "type": "range",
+      "id": "video_height",
+      "label": "Video / Section Height",
+      "min": 300,
+      "max": 700,
+      "step": 20,
+      "unit": "px",
+      "default": 420
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "#562e1f"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Effortless Hydration"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading Color",
+      "default": "#e8e8e8"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading Size",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Install in seconds"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Convert your insulated water bottle into a hands-free hydration system. Simply connect a drinking tube to a wide mouth water bottle. HydroLid works with insulated bottles from CamelBak, ThermoFlask and more to enjoy ice cold water on the go."
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#d0d0d0"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "Shop Kit"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Section Style"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#562e1f"
+    }
+  ],
+  "presets": [
+    {
+      "name": "HydroLid Video CTA"
+    }
+  ]
+}
+{% endschema %}

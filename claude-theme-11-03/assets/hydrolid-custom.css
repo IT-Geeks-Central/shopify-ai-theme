@@ -1,0 +1,1170 @@
+/* ================================================================
+   HYDROLID CUSTOM THEME STYLES
+   Scoped to .hl- prefix to avoid collisions with Horizon base CSS
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   1. CSS VARIABLES (Design Tokens)
+   ---------------------------------------------------------------- */
+.hl-section,
+.hl-hero,
+.hl-pain-section,
+.hl-collections,
+.hl-testimonials-section,
+.hl-origin-section,
+.hl-steps-section,
+.hl-video-cta,
+.hl-faq-section,
+.hl-blog-section,
+.hl-trust-section,
+.hl-inuse-section {
+  --hl-accent-1: #1f5a3c;
+  --hl-accent-2: #10497e;
+  --hl-text: #111111;
+  --hl-white: #ffffff;
+  --hl-gray: #f7f7f7;
+  --hl-main-bg: #f2f6f4;
+  --hl-brown: #562e1f;
+  --hl-star: #b85c2e;
+}
+
+/* ----------------------------------------------------------------
+   2. SHARED TYPOGRAPHY UTILITIES
+   ---------------------------------------------------------------- */
+.hl-sub-heading {
+  font-size: 26px;
+  line-height: 1.2;
+  text-transform: capitalize;
+  font-family: Georgia, serif;
+  font-weight: 400;
+  color: #1f5a3c;
+}
+
+.hl-body {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* ----------------------------------------------------------------
+   3. SHARED BUTTON STYLES
+   ---------------------------------------------------------------- */
+.hl-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  border: none;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.hl-btn:hover {
+  opacity: 0.85;
+  text-decoration: none;
+}
+
+.hl-btn--accent {
+  background: #10497e;
+  color: #ffffff;
+}
+
+.hl-btn--outline-white {
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+
+.hl-btn--white {
+  background: #ffffff;
+  color: #111111;
+}
+
+.hl-btn--underline {
+  background: none;
+  padding: 0 0 2px 0;
+  border-bottom: 1px solid #111111;
+  font-style: italic;
+  font-size: 15px;
+}
+
+/* ----------------------------------------------------------------
+   4. SHARED SECTION LAYOUT
+   ---------------------------------------------------------------- */
+.hl-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.hl-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.hl-section-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hl-section-header-center {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  text-align: center;
+}
+
+/* ----------------------------------------------------------------
+   5. HERO BANNER
+   ---------------------------------------------------------------- */
+.hl-hero {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  background: #1a2a3a;
+}
+
+.hl-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hl-hero__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hl-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.18) 55%, transparent 100%);
+  z-index: 1;
+}
+
+.hl-hero__content {
+  position: relative;
+  z-index: 2;
+  padding: 0 30px 100px 50px;
+  max-width: 56%;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hl-hero__content .hl-sub-heading {
+  color: #ffffff;
+}
+
+.hl-hero__buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.hl-hero__product-card {
+  position: absolute;
+  right: 30px;
+  bottom: 80px;
+  z-index: 3;
+  background: #ffffff;
+  padding: 10px;
+  width: 280px;
+}
+
+.hl-hero__card-img {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.hl-hero__card-img-tag {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hl-hero__card-title {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #111111;
+}
+
+.hl-hero__card-price {
+  font-weight: 600;
+  color: #10497e;
+  font-size: 15px;
+}
+
+/* ----------------------------------------------------------------
+   6. NEW ARRIVALS / BUILD YOUR SETUP (Product Grid)
+   ---------------------------------------------------------------- */
+.hl-product-grid-section {
+  padding: 60px 0 80px;
+  background: #f2f6f4;
+}
+
+.hl-product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.hl-product-card {
+  background: #ffffff;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hl-product-card:hover {
+  transform: translateY(-4px);
+}
+
+.hl-product-card__image {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #f7f7f7;
+}
+
+.hl-product-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.hl-product-card:hover .hl-product-card__img {
+  transform: scale(1.05);
+}
+
+.hl-product-card__info {
+  padding: 12px 10px 8px;
+  text-align: center;
+  flex: 1;
+}
+
+.hl-product-card__stars {
+  color: #b85c2e;
+  font-size: 14px;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+
+.hl-product-card__title {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  margin-bottom: 5px;
+  color: #111111;
+}
+
+.hl-product-card__price {
+  font-weight: 600;
+  color: #111111;
+  font-size: 15px;
+}
+
+.hl-product-card .hl-btn {
+  width: 100%;
+  text-align: center;
+  margin-top: 8px;
+  display: block;
+}
+
+/* ----------------------------------------------------------------
+   7. THE SYSTEM
+   ---------------------------------------------------------------- */
+.hl-system-section {
+  padding: 80px 50px;
+  background: #f2f6f4;
+}
+
+.hl-system-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.hl-system-content {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.hl-system-image {
+  width: 42%;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.hl-system-image-tag {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hl-system-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.hl-system-quote {
+  border-left: 3px solid #10497e;
+  padding-left: 14px;
+}
+
+.hl-system-quote h3 {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.3;
+  color: #111111;
+}
+
+.hl-features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.hl-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.hl-feature-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #10497e;
+}
+
+.hl-feature-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+/* ----------------------------------------------------------------
+   8. PAIN POINTS
+   ---------------------------------------------------------------- */
+.hl-pain-section {
+  padding: 80px 0;
+  background: #f2f6f4;
+}
+
+.hl-pain-points {
+  display: flex;
+  background: #ffffff;
+}
+
+.hl-pain-point {
+  flex: 1;
+  padding: 32px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.hl-pain-point-icon {
+  width: 40px;
+  height: 40px;
+  color: #10497e;
+  flex-shrink: 0;
+}
+
+.hl-pain-point-icon svg {
+  width: 40px;
+  height: 40px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.hl-pain-divider {
+  width: 2px;
+  background: #f2f6f4;
+  align-self: center;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------------
+   9. SHOP BY CATEGORY (Collections)
+   ---------------------------------------------------------------- */
+.hl-collections {
+  display: flex;
+}
+
+.hl-collection-card {
+  flex: 1;
+  position: relative;
+  min-height: 500px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #ffffff;
+}
+
+.hl-collection-card__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hl-collection-card__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hl-collection-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.12) 55%);
+  z-index: 1;
+}
+
+.hl-collection-card__content {
+  position: relative;
+  z-index: 2;
+  padding: 40px 30px;
+  max-width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hl-collection-card__description {
+  color: rgba(255,255,255,0.85);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* ----------------------------------------------------------------
+   10. TESTIMONIALS
+   ---------------------------------------------------------------- */
+.hl-testimonials-section {
+  padding-bottom: 80px;
+  background: #f2f6f4;
+}
+
+.hl-testimonials-header {
+  text-align: center;
+  padding: 80px 50px 30px;
+}
+
+.hl-stars {
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+  margin: 10px 0;
+  color: #b85c2e;
+  font-size: 18px;
+}
+
+.hl-rating-text {
+  text-align: center;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #111111;
+  margin-top: 5px;
+}
+
+.hl-review-ticker {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 0 30px 20px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hl-review-ticker::-webkit-scrollbar {
+  display: none;
+}
+
+.hl-review-card {
+  min-width: 400px;
+  flex-shrink: 0;
+  background: #ffffff;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hl-review-card__stars {
+  color: #b85c2e;
+  font-size: 15px;
+  display: flex;
+  gap: 2px;
+}
+
+.hl-review-card__text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333333;
+  flex: 1;
+}
+
+.hl-review-card__author {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.hl-review-card__author-name {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+
+.hl-review-card__author-role {
+  font-size: 13px;
+  color: #666666;
+}
+
+.hl-review-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f2f6f4;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: #1f5a3c;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.hl-review-badge svg {
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------------
+   11. OUR ORIGIN (Timeline)
+   ---------------------------------------------------------------- */
+.hl-origin-section {
+  background: #1a2a3a;
+  color: #ffffff;
+}
+
+.hl-origin-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 50px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.hl-origin-left {
+  flex: 1;
+}
+
+.hl-origin-left .hl-sub-heading {
+  color: #ffffff;
+}
+
+.hl-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  position: relative;
+  margin-top: 10px;
+}
+
+.hl-timeline::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: rgba(255,255,255,0.4);
+}
+
+.hl-timeline-item {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+.hl-timeline-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e53e3e;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: hl-pulse 2s ease-in-out infinite;
+}
+
+@keyframes hl-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(229, 62, 62, 0); }
+}
+
+.hl-timeline-dot::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.hl-timeline-label {
+  width: 85px;
+  flex-shrink: 0;
+}
+
+.hl-timeline-label h6 {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+}
+
+.hl-timeline-content {
+  flex: 1;
+}
+
+.hl-timeline-content h4 {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.hl-timeline-content .hl-body {
+  color: rgba(255,255,255,0.75);
+  font-size: 14px;
+}
+
+.hl-origin-video {
+  width: 340px;
+  flex-shrink: 0;
+  height: 500px;
+  overflow: hidden;
+}
+
+.hl-origin-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ----------------------------------------------------------------
+   12. THREE STEPS
+   ---------------------------------------------------------------- */
+.hl-steps-section {
+  padding: 80px 0 60px;
+  background: #f2f6f4;
+}
+
+.hl-steps-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.hl-step-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.hl-step-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hl-step-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: #ffffff;
+  fill: none;
+  stroke-width: 2;
+}
+
+.hl-step-icon--1 { background: #10497e; }
+.hl-step-icon--2 { background: #2e6f4e; }
+.hl-step-icon--3 { background: #1f3d2b; }
+
+.hl-step-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.hl-step-text h4 {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.hl-step-text .hl-body {
+  color: #555555;
+  max-width: 260px;
+}
+
+/* ----------------------------------------------------------------
+   13. VIDEO CTA
+   ---------------------------------------------------------------- */
+.hl-video-cta {
+  background: #562e1f;
+  position: relative;
+  overflow: hidden;
+}
+
+.hl-video-cta__video-wrap {
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+}
+
+.hl-video-cta__video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hl-video-cta__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 420px;
+  background: linear-gradient(to right, rgba(86,46,31,0.88) 0%, rgba(86,46,31,0.42) 55%, transparent 100%);
+  z-index: 1;
+}
+
+.hl-video-cta__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+.hl-video-cta__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 50px;
+  width: 100%;
+}
+
+.hl-video-cta__text {
+  max-width: 580px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hl-video-cta__text .hl-sub-heading {
+  color: rgba(255,255,255,0.88);
+}
+
+.hl-video-cta__text .hl-body {
+  color: rgba(255,255,255,0.82);
+}
+
+/* ----------------------------------------------------------------
+   14. FAQ
+   ---------------------------------------------------------------- */
+.hl-faq-section {
+  padding: 100px 0 80px;
+  background: #f2f6f4;
+}
+
+.hl-faq-layout {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+}
+
+.hl-faq-sidebar {
+  flex: 0 0 38%;
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hl-faq-sidebar .hl-body {
+  color: #555555;
+}
+
+.hl-faq-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hl-faq-item {
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.hl-faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 18px 24px;
+  text-align: left;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  transition: background-color 0.2s;
+  color: #111111;
+}
+
+.hl-faq-question:hover {
+  background-color: rgba(0,0,0,0.02);
+}
+
+.hl-faq-question::after {
+  content: '+';
+  font-size: 22px;
+  font-weight: 400;
+  flex-shrink: 0;
+  transition: transform 0.3s;
+  color: #10497e;
+}
+
+.hl-faq-item.hl-active .hl-faq-question::after {
+  content: '−';
+}
+
+.hl-faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.hl-faq-item.hl-active .hl-faq-answer {
+  max-height: 500px;
+}
+
+.hl-faq-answer-inner {
+  padding: 0 24px 18px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #555555;
+}
+
+/* ----------------------------------------------------------------
+   15. BLOG
+   ---------------------------------------------------------------- */
+.hl-blog-section {
+  padding: 80px 0 10px;
+  background: #f2f6f4;
+}
+
+.hl-blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.hl-blog-card {
+  background: #ffffff;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.hl-blog-card:hover {
+  transform: translateY(-4px);
+}
+
+.hl-blog-card__image {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+
+.hl-blog-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.hl-blog-card:hover .hl-blog-card__img {
+  transform: scale(1.05);
+}
+
+.hl-blog-card__info {
+  padding: 20px 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hl-blog-card__title {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #111111;
+  line-height: 1.3;
+}
+
+.hl-blog-card__excerpt {
+  color: #666666;
+  font-size: 14px;
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* ----------------------------------------------------------------
+   16. TRUST BADGES & FINAL CTA
+   ---------------------------------------------------------------- */
+.hl-trust-section {
+  padding: 80px 0 0;
+  background: #f2f6f4;
+}
+
+.hl-trust-badges {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.hl-trust-badge {
+  background: #ffffff;
+  padding: 28px 18px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.hl-trust-badge__icon {
+  width: 32px;
+  height: 32px;
+  color: #111111;
+}
+
+.hl-trust-badge__icon svg {
+  width: 32px;
+  height: 32px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.hl-trust-badge__label {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #111111;
+}
+
+.hl-final-cta {
+  background: #ffffff;
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  margin-top: 0;
+}
+
+.hl-final-cta__text h3 {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: #111111;
+  margin-bottom: 6px;
+}
+
+.hl-final-cta__text .hl-body {
+  color: #555555;
+}
+
+/* ----------------------------------------------------------------
+   17. IN USE (Video Ticker)
+   ---------------------------------------------------------------- */
+.hl-inuse-section {
+  padding: 80px 0;
+  background: #f2f6f4;
+}
+
+.hl-inuse-header {
+  text-align: center;
+  padding-bottom: 30px;
+  max-width: 700px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.hl-insta-ticker {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 0 30px 20px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hl-insta-ticker::-webkit-scrollbar {
+  display: none;
+}
+
+.hl-insta-card {
+  width: 280px;
+  flex-shrink: 0;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.hl-insta-card__video {
+  width: 100%;
+  aspect-ratio: 0.75;
+  overflow: hidden;
+}
+
+.hl-insta-card__video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hl-insta-card__info {
+  padding: 14px;
+}
+
+.hl-insta-card__title {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #111111;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.hl-insta-card__price {
+  font-weight: 600;
+  color: #111111;
+  font-size: 14px;
+}
+
+/* ----------------------------------------------------------------
+   18. RESPONSIVE BREAKPOINTS
+   ---------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .hl-hero__content { max-width: 70%; }
+  .hl-hero__product-card { display: none; }
+
+  .hl-system-content { flex-direction: column; }
+  .hl-system-image { width: 100%; }
+
+  .hl-origin-inner { flex-direction: column; }
+  .hl-origin-video { width: 100%; height: 380px; }
+
+  .hl-faq-layout { flex-direction: column; }
+  .hl-faq-sidebar { position: static; flex: 1 1 100%; }
+}
+
+@media (max-width: 768px) {
+  .hl-container { padding-left: 20px; padding-right: 20px; }
+  .hl-system-section { padding: 50px 20px; }
+  .hl-hero__content { max-width: 100%; padding: 0 20px 60px; }
+
+  .hl-product-grid { grid-template-columns: repeat(2, 1fr); }
+  .hl-features-grid { grid-template-columns: 1fr; }
+  .hl-pain-points { flex-direction: column; }
+  .hl-pain-divider { width: 100%; height: 1px; }
+  .hl-collections { flex-direction: column; }
+  .hl-trust-badges { grid-template-columns: repeat(2, 1fr); }
+  .hl-final-cta { flex-direction: column; text-align: center; }
+  .hl-steps-row { grid-template-columns: 1fr; }
+  .hl-blog-grid { grid-template-columns: 1fr; }
+  .hl-video-cta__text { max-width: 100%; }
+  .hl-video-cta__inner { padding: 0 20px; }
+  .hl-testimonials-header { padding: 50px 20px 20px; }
+  .hl-origin-inner { padding: 50px 20px; }
+  .hl-steps-section .hl-container { padding-left: 20px; padding-right: 20px; }
+  .hl-faq-sidebar { top: auto; }
+}

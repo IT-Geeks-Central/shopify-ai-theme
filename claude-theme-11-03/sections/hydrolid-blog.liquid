@@ -1,0 +1,212 @@
+{% comment %} Section: hydrolid-blog {% endcomment %}
+{{ 'hydrolid-custom.css' | asset_url | stylesheet_tag }}
+
+<section id="shopify-section-{{ section.id }}" class="hl-blog-section" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; background: {{ section.settings.bg_color }};">
+
+  <div class="hl-container">
+
+    {%- if section.settings.subheading != blank or section.settings.heading != blank or section.settings.btn_label != blank -%}
+      <div class="hl-section-header">
+        <div class="hl-section-header-left">
+          {%- if section.settings.subheading != blank -%}
+            <p class="hl-sub-heading" style="font-size: {{ section.settings.subheading_size }}px;">{{ section.settings.subheading }}</p>
+          {%- endif -%}
+          {%- if section.settings.heading != blank -%}
+            <h2 style="font-size: {{ section.settings.heading_size }}px; font-weight: {{ section.settings.heading_weight }}; letter-spacing: -0.8px;">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+        </div>
+        {%- if section.settings.btn_label != blank -%}
+          {%- if section.settings.blog != blank -%}
+            {%- assign blog_url = section.settings.blog.url -%}
+          {%- elsif section.settings.btn_url != blank -%}
+            {%- assign blog_url = section.settings.btn_url -%}
+          {%- else -%}
+            {%- assign blog_url = '#' -%}
+          {%- endif -%}
+          <a href="{{ blog_url }}" class="hl-btn hl-btn--accent">{{ section.settings.btn_label }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="hl-blog-grid">
+      {%- if section.settings.blog != blank and section.settings.blog.articles_count > 0 -%}
+        {%- for article in section.settings.blog.articles limit: section.settings.post_limit -%}
+          <div class="hl-blog-card">
+            {%- if article.image != blank -%}
+              <div class="hl-blog-card__image">
+                <a href="{{ article.url }}">
+                  {{- article.image | image_url: width: 700 | image_tag: class: 'hl-blog-card__img', alt: article.image.alt | escape -}}
+                </a>
+              </div>
+            {%- endif -%}
+            <div class="hl-blog-card__info">
+              {%- if article.title != blank -%}
+                <p class="hl-blog-card__title">
+                  <a href="{{ article.url }}" style="color: inherit; text-decoration: none;">{{ article.title | truncate: 55 }}</a>
+                </p>
+              {%- endif -%}
+              {%- if article.excerpt != blank -%}
+                <p class="hl-blog-card__excerpt">{{ article.excerpt | strip_html | truncate: 100 }}</p>
+              {%- elsif section.settings.show_content_excerpt -%}
+                <p class="hl-blog-card__excerpt">{{ article.content | strip_html | truncate: 100 }}</p>
+              {%- endif -%}
+              {%- if section.settings.read_more_label != blank -%}
+                <a href="{{ article.url }}" class="hl-btn hl-btn--underline">{{ section.settings.read_more_label }}</a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+
+      {%- else -%}
+        {%- comment -%} Placeholder cards for Theme Editor preview {%- endcomment -%}
+        {%- for i in (1..3) -%}
+          <div class="hl-blog-card">
+            <div class="hl-blog-card__image" style="background: #e0e0e0; aspect-ratio: 4/3;"></div>
+            <div class="hl-blog-card__info">
+              <p class="hl-blog-card__title">{{ 'onboarding.blog_post_title' | t }}</p>
+              <p class="hl-blog-card__excerpt">{{ 'onboarding.blog_post_excerpt' | t }}</p>
+              {%- if section.settings.read_more_label != blank -%}
+                <a href="#" class="hl-btn hl-btn--underline">{{ section.settings.read_more_label }}</a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "HydroLid Blog",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "News"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading Size",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Learn More About Smarter Hydration."
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "View All Button Label",
+      "default": "View All"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "View All Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Blog"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog"
+    },
+    {
+      "type": "range",
+      "id": "post_limit",
+      "label": "Number of Posts",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "read_more_label",
+      "label": "Read More Label",
+      "default": "Read More"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_content_excerpt",
+      "label": "Show content as excerpt if no excerpt set",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section Style"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f2f6f4"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 120,
+      "step": 8,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 8,
+      "unit": "px",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "HydroLid Blog"
+    }
+  ]
+}
+{% endschema %}

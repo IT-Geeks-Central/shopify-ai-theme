@@ -1,0 +1,230 @@
+{% comment %} Section: hydrolid-inuse {% endcomment %}
+{{ 'hydrolid-custom.css' | asset_url | stylesheet_tag }}
+
+<section id="shopify-section-{{ section.id }}" class="hl-inuse-section" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; background: {{ section.settings.bg_color }};">
+
+  {%- if section.settings.subheading != blank or section.settings.heading != blank -%}
+    <div class="hl-inuse-header">
+      <div class="hl-section-header-center">
+        {%- if section.settings.subheading != blank -%}
+          <p class="hl-sub-heading" style="font-size: {{ section.settings.subheading_size }}px;">{{ section.settings.subheading }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 style="font-size: {{ section.settings.heading_size }}px; font-weight: {{ section.settings.heading_weight }}; letter-spacing: -0.8px;">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div class="hl-insta-ticker">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'video_card' -%}
+        <div class="hl-insta-card" {{ block.shopify_attributes }}>
+
+          {%- if block.settings.video != blank -%}
+            {%- assign card_vid = block.settings.video -%}
+            <div class="hl-insta-card__video">
+              <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                {%- for source in card_vid.sources -%}
+                  <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                {%- endfor -%}
+              </video>
+            </div>
+          {%- elsif block.settings.fallback_image != blank -%}
+            <div class="hl-insta-card__video">
+              {{- block.settings.fallback_image | image_url: width: 400 | image_tag: style: 'width:100%;height:100%;object-fit:cover;display:block;', alt: block.settings.fallback_image.alt | escape -}}
+            </div>
+          {%- endif -%}
+
+          <div class="hl-insta-card__info">
+            {%- if block.settings.product != blank -%}
+              {%- assign card_product = block.settings.product -%}
+              <p class="hl-insta-card__title">
+                <a href="{{ card_product.url }}" style="color: inherit; text-decoration: none;">{{ card_product.title }}</a>
+              </p>
+              <p class="hl-insta-card__price">{{ card_product.price | money }}</p>
+            {%- else -%}
+              {%- if block.settings.title != blank -%}
+                <p class="hl-insta-card__title">{{ block.settings.title }}</p>
+              {%- endif -%}
+              {%- if block.settings.price != blank -%}
+                <p class="hl-insta-card__price">{{ block.settings.price }}</p>
+              {%- endif -%}
+            {%- endif -%}
+          </div>
+
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "HydroLid In Use",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "In Use"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading Size",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Used in the Wild. Trusted in the Field."
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "header",
+      "content": "Section Style"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f2f6f4"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 120,
+      "step": 8,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 8,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video_card",
+      "name": "Video Card",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Video"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "image_picker",
+          "id": "fallback_image",
+          "label": "Fallback Image (if no video)"
+        },
+        {
+          "type": "header",
+          "content": "Product (auto-fills title & price)"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Link to Product"
+        },
+        {
+          "type": "header",
+          "content": "Manual Labels (used if no product selected)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Base Kit Bundle"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "$69.99"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "HydroLid In Use",
+      "blocks": [
+        {
+          "type": "video_card",
+          "settings": {
+            "title": "Base Kit Bundle | Insulated Water Bottle Included",
+            "price": "$69.99"
+          }
+        },
+        {
+          "type": "video_card",
+          "settings": {
+            "title": "Base Kit Bundle | Insulated Water Bottle Included",
+            "price": "$69.99"
+          }
+        },
+        {
+          "type": "video_card",
+          "settings": {
+            "title": "Base Kit Bundle | Insulated Water Bottle Included",
+            "price": "$69.99"
+          }
+        },
+        {
+          "type": "video_card",
+          "settings": {
+            "title": "Field & Fire Kit Bundle",
+            "price": "$149.99"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
